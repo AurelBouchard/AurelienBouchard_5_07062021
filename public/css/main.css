@@ -137,8 +137,19 @@ input[type="checkbox"] {
   color: white;
 }
 
+@media screen and (max-width: 780px) {
+  body {
+    font-size: 1.4rem;
+  }
+}
+
 body {
   background-color: #f2e8f0;
+}
+
+.container {
+  padding: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 header {
@@ -172,5 +183,37 @@ footer.container-fluid {
 
 footer.container-fluid * {
   color: #d4c5e2;
+}
+
+.article {
+  border: none;
+}
+
+.article .card-header {
+  background-color: #343a40;
+}
+
+.article .card-body {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.article .publication-date {
+  text-align: right;
+}
+
+.article .addFavorite {
+  font-size: 1.4rem;
+  position: absolute;
+  top: 80px;
+  right: 10px;
+}
+
+.article .addFavorite .far {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.article .addFavorite:hover {
+  color: yellow;
+  cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */
