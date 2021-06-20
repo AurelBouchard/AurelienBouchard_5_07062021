@@ -118,19 +118,18 @@ input[type="checkbox"] {
   font-size: 1rem;
   border-radius: 2rem;
   border: none;
-  background-image: -webkit-gradient(linear, right bottom, left top, from(#df8620), color-stop(#925dfe), to(#df8620));
-  background-image: linear-gradient(to left top, #df8620, #925dfe, #df8620);
-  background-size: 1000%, 100%;
+  background-image: linear-gradient(125deg, #df8620, #925dfe, #df8620);
+  background-size: 200%, 100%;
   background-position: 0 0;
-  padding: 1rem 0;
 }
 
 .btn:hover {
+  color: white;
   background-position: 100% 0;
   -webkit-transition-delay: 20ms;
           transition-delay: 20ms;
-  -webkit-transition-duration: 140ms;
-          transition-duration: 140ms;
+  -webkit-transition-duration: 340ms;
+          transition-duration: 340ms;
 }
 
 .btn:visited {
