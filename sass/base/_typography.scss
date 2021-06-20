@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "Shrikhand";
+  src: url("https://aurelbouchard.github.io/AurelienBouchard_3_05032021/public/fonts/shrikhand/shrikhand-regular-webfont.ttf");
+  // font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto-bold";
+  src: url("https://aurelbouchard.github.io/AurelienBouchard_3_05032021/public/fonts/roboto/Roboto-Bold.ttf");
+  // font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto-medium";
+  src: url("https://aurelbouchard.github.io/AurelienBouchard_3_05032021/public/fonts/roboto/Roboto-Medium.ttf");
+  // font-weight: medium;
+  font-style: normal;
+}
+  
+@font-face {
+  font-family: "Roboto-regular";
+  src: url("https://aurelbouchard.github.io/AurelienBouchard_3_05032021/public/fonts/roboto/Roboto-Regular.ttf");
+  // font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto-light";
+  src: url("https://aurelbouchard.github.io/AurelienBouchard_3_05032021/public/fonts/roboto/Roboto-Light.ttf");
+  // font-weight: medium;
+  font-style: normal;
+}
+
+// FONTS SIZES ARE SET IN VARIABLES !!!!!!!!!!!!!!!!
+
+
+body {
+  font-family: "Roboto-regular";
+}
+
+.logo {
+  font-family: "Shrikhand";
+}
+
+.title {
+  font-family: "Shrikhand";
+}
+
+.h1 {
+  font-family: "Roboto-bold";
+}
+.h2 {
+  font-family: "Roboto-medium"; //bold !?
+}
+.h3 {
+  font-family: "Roboto-light";
+}
+.h5 {
+  font-family: "Roboto-light";
+}
+.h6 {
+  font-family: "Roboto-light";
+}
+.h7 {
+  font-family: "Roboto-medium";
+}
+.entree_plat_dessert{
+  font-family: "Roboto-light";
+}
+
+.btn {
+  font-family: "Roboto-medium";
+}
+
+.flag_new {
+  font-family: "Roboto-medium";
+}
+

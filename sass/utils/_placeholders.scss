@@ -1,0 +1,11 @@
+%clean_text{
+    color: $default-color;
+    text-decoration: none;
+}
+
+
+%reset_h_style{
+    font-size: $FS_main;
+    font-weight: normal;
+    @extend %clean_text;
+}

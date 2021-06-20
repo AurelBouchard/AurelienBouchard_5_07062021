@@ -1,0 +1,28 @@
+header {
+    padding-top: 1.25rem;
+    padding-bottom: .75rem;
+
+    background-color: $bg-dark;
+
+   .h1, .h3, i {
+
+    color: $header-color;
+    background-image: $bg-orinoco;
+    background-clip: text ;
+   }
+
+   .h1, .h3 {
+
+    text-align: left;
+   }
+
+   span.h1 {
+      font-size: $FS_logo;
+   }
+
+ }
+
+#panier {
+    text-align: right;
+
+}

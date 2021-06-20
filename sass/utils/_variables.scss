@@ -1,0 +1,68 @@
+// ##### COLOURS #################################
+
+$color-prim:    hsl(260, 99%, 68%);     //rgb 134, 91, 254
+$color-sec:     hsl(32, 75%, 50%);    //rgb 222, 134, 31
+$color-ter:     hsl(165, 56%, 76%);     //#A0e4d3
+$color-quar:    hsl(319, 35%, 21%);     //#48233c
+$color-quin:    hsl(271, 33%, 83%);    //d4c5e2
+//#db5461
+//2e2d4d
+
+$color-lightgrey:   hsl(0, 0%, 96%);    //#f6f6f6
+$color-mediumgrey:  hsl(0, 0%, 92%);    //#eaeaea
+$color-darkgrey:    hsl(0, 0%, 21%);    //#353535
+
+$default-color:     black;
+$btn-text-color:    white;
+$footer-color:      $color-quin;
+$header-color:      transparent;
+
+$bg-main:           hsl(312, 29%, 93%);   // rgb 243, 233, 241
+$bg-light:          white;
+$bg-dark:           hsl(260, 20%, 4%);            // hsl(260, 20%, 4%)
+$bg-orinoco:		linear-gradient(125deg, $color-sec, $color-prim);
+
+
+// ##### FONTS SIZES ###############################
+
+$FS_main: 1rem;
+
+$FS_logo: 3rem;
+//$FS_back: 20px;
+
+// $FS_map:(
+//     h1:$FS_main*1.5,
+//     h2:$FS_main*1.125,
+//     h3:$FS_main*1.125,
+//     h4:$FS_main*1,
+//     h5:$FS_main*0.85,
+//     h6:$FS_main*0.75
+// );
+
+
+
+$FS_btn:    $FS_main;
+$FS_flag:   $FS_main*0.86;
+
+
+$FS_foot_title: $FS_main*1.125;
+$FS_foot_li_1:  15.5px;
+$FS_foot_li_2:  $FS_main*1;
+
+
+
+
+
+
+
+// ##### DIMENSIONS ###############################
+
+
+$card_radius:   1rem;
+$menu_radius:   2rem;
+
+// ##### VARIOUS ###################################
+
+
+$h_levels: h1, h2, h3, h4, h5, h6;
+

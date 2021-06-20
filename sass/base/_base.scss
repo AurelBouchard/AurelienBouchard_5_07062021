@@ -1,0 +1,47 @@
+// ##### RESET CSS #########################################
+
+* {
+    margin: 0;
+    padding: 0;
+    @extend %clean_text;
+}
+
+body{
+    @extend %clean_text;
+    min-width: 320px;
+}
+
+@each $h_level in $h_levels {
+    #{$h_level} {
+        @extend %reset_h_style;
+  }
+}
+
+// @each $h_TAG_level in $h_levels {
+//     .#{$h_TAG_level} {
+//         font-size: map-get($FS_map, $h_TAG_level)
+//     }
+// }
+
+
+
+
+
+// ##### SMALL ELEMENTS #########################################
+
+a {
+    &:active{
+        color:$color-prim;
+    }
+}
+
+
+ul, li, ol {
+    list-style: none;
+}
+
+
+input[type="checkbox"]{
+        display:none;
+}
+

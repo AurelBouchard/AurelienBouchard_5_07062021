@@ -1,0 +1,10 @@
+footer.container-fluid {
+    padding-top: 1rem;
+    background-color: $bg-dark;
+
+    & *{
+        color: $footer-color;
+    }
+
+
+}

@@ -1,0 +1,28 @@
+.btn {
+    display:inline-block;
+    position: relative;
+
+    color:$btn-text-color;
+    font-size: $FS_btn;
+    border-radius:2rem;
+    border: none;
+
+    background-image: linear-gradient(to left top, $color-sec, $color-prim, $color-sec);
+    background-size: 1000%, 100%;
+    background-position: 0 0 ;
+    
+    padding:1rem 0;
+
+    &:hover{
+        background-position: 100% 0;
+        transition-delay: 20ms;
+        transition-duration: 140ms;
+    }
+
+    @extend %clic;
+
+    &:visited{
+        color:$btn-text-color;
+    }
+
+}

@@ -1,0 +1,6 @@
+@function is_in_index ($url) {
+    @return  $url == "index.html";
+    //  ( document.location.href.indexOf('.nz') > -1 ) {
+    //     $('body').addClass('nz');
+    // }
+}
