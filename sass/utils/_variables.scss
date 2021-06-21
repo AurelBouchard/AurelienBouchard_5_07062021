@@ -8,6 +8,8 @@ $color-quin:    hsl(271, 33%, 83%);    //d4c5e2
 //#db5461
 //2e2d4d
 
+$primary : $color-prim;
+
 $color-lightgrey:   hsl(0, 0%, 96%);    //#f6f6f6
 $color-mediumgrey:  hsl(0, 0%, 92%);    //#eaeaea
 $color-darkgrey:    hsl(0, 0%, 21%);    //#353535
@@ -27,7 +29,7 @@ $bg-orinoco:		linear-gradient(125deg, $color-sec, $color-prim);
 
 $FS_main: 1rem;
 
-$FS_logo: 3rem;
+$FS_logo: 2rem;
 //$FS_back: 20px;
 
 // $FS_map:(
@@ -41,15 +43,13 @@ $FS_logo: 3rem;
 
 
 
-$FS_btn:    $FS_main;
+$FS_btn:    $FS_main*1.125;
 $FS_flag:   $FS_main*0.86;
 
 
 $FS_foot_title: $FS_main*1.125;
 $FS_foot_li_1:  15.5px;
 $FS_foot_li_2:  $FS_main*1;
-
-
 
 
 

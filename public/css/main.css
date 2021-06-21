@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
+.btn {
+  position: relative;
+}
+
 .btn:active {
   top: 3px;
 }
@@ -113,23 +117,23 @@ input[type="checkbox"] {
 
 .btn {
   display: inline-block;
-  position: relative;
   color: white;
-  font-size: 1rem;
-  border-radius: 2rem;
-  border: none;
+  font-size: 1.125rem;
   background-image: linear-gradient(125deg, #df8620, #925dfe, #df8620);
-  background-size: 200%, 100%;
+  background-size: 220%, 100%;
   background-position: 0 0;
+  -webkit-transition-duration: 340ms;
+          transition-duration: 340ms;
+  -webkit-transition-property: all;
+  transition-property: all;
 }
 
 .btn:hover {
+  font-size: 1.35rem;
   color: white;
   background-position: 100% 0;
-  -webkit-transition-delay: 20ms;
-          transition-delay: 20ms;
-  -webkit-transition-duration: 340ms;
-          transition-duration: 340ms;
+  -webkit-transition-delay: 50ms;
+          transition-delay: 50ms;
 }
 
 .btn:visited {
@@ -151,6 +155,22 @@ body {
   margin-bottom: 3rem;
 }
 
+#basketLogo {
+  -webkit-transition-duration: 340ms;
+          transition-duration: 340ms;
+  -webkit-transition-property: all;
+  transition-property: all;
+  font-size: 2rem;
+}
+
+#basketLogo:hover {
+  font-size: 2.25rem;
+}
+
+aside {
+  background-color: slategrey;
+}
+
 header {
   padding-top: 1.25rem;
   padding-bottom: .75rem;
@@ -168,7 +188,7 @@ header .h1, header .h3 {
 }
 
 header span.h1 {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 #panier {

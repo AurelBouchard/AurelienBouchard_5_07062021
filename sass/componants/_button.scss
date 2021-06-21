@@ -1,22 +1,23 @@
 .btn {
     display:inline-block;
-    position: relative;
 
     color:$btn-text-color;
     font-size: $FS_btn;
-    border-radius:2rem;
-    border: none;
+    //border-radius:0.5rem;
+    //border: none;
 
-    background-image: linear-gradient(to left top, $color-sec, $color-prim, $color-sec);
-    background-size: 1000%, 100%;
+    background-image: linear-gradient(125deg, $color-sec, $color-prim, $color-sec);
+    background-size: 220%, 100%;
     background-position: 0 0 ;
-    
-    padding:1rem 0;
 
+    transition-duration: 340ms;
+    transition-property: all;
+    
     &:hover{
+        font-size: $FS_btn*1.2;
+        color:$btn-text-color;
         background-position: 100% 0;
-        transition-delay: 20ms;
-        transition-duration: 140ms;
+        transition-delay: 50ms;
     }
 
     @extend %clic;
