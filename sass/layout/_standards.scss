@@ -15,18 +15,4 @@ body {
     margin-bottom: 3rem;
 }
 
-#basketLogo {
-    transition-duration: 340ms;
-    transition-property: all;
-
-    font-size: $FS_logo;
-    &:hover{
-        font-size: $FS_logo*1.125;
-    }
-}
-
-
-aside {
-    background-color: slategrey;
-}
 

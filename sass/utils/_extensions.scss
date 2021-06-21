@@ -4,3 +4,11 @@
         top:3px;
     }
 }
+
+
+%hoverScaleUp {
+    &:hover{
+        transform-origin: center;
+        transform: scale(1.125);
+    }
+}

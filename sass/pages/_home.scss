@@ -1,0 +1,8 @@
+.furniture{
+    border: none;
+
+    transition-duration: 340ms;
+    transition-property: all;
+    @extend %hoverScaleUp;
+}
+

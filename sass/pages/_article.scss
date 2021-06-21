@@ -1,0 +1,15 @@
+// ASIDE
+
+aside a{
+    transition-duration: 340ms;
+    transition-property: all;
+    @extend %hoverScaleUp;
+}
+
+aside {
+    background-color: slategrey;
+}
+
+
+
+// MAIN

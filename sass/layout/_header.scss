@@ -1,4 +1,4 @@
-header {
+header {                        // A VERIFIER
     padding-top: 1.25rem;
     padding-bottom: .75rem;
 
@@ -22,7 +22,22 @@ header {
 
  }
 
-#panier {
+#panier {                   // A VERIFIER
     text-align: right;
 
+}
+
+
+
+// ok
+#basketLogo {
+    transition-duration: 340ms;
+    transition-property: all;
+
+    font-size: $FS_logo;
+
+    a { margin : auto; }
+    
+    @extend %hoverScaleUp;
+    
 }

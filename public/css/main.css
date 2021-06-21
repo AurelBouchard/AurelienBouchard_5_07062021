@@ -16,6 +16,13 @@ h1, h2, h3, h4, h5, h6 {
   top: 3px;
 }
 
+#basketLogo:hover, .furniture:hover, aside a:hover {
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: scale(1.125);
+          transform: scale(1.125);
+}
+
 @font-face {
   font-family: "Shrikhand";
   src: url("https://aurelbouchard.github.io/AurelienBouchard_3_05032021/public/fonts/shrikhand/shrikhand-regular-webfont.ttf");
@@ -99,6 +106,10 @@ body {
   padding: 0;
 }
 
+*:hover {
+  text-decoration: none;
+}
+
 body {
   min-width: 320px;
 }
@@ -155,22 +166,6 @@ body {
   margin-bottom: 3rem;
 }
 
-#basketLogo {
-  -webkit-transition-duration: 340ms;
-          transition-duration: 340ms;
-  -webkit-transition-property: all;
-  transition-property: all;
-  font-size: 2rem;
-}
-
-#basketLogo:hover {
-  font-size: 2.25rem;
-}
-
-aside {
-  background-color: slategrey;
-}
-
 header {
   padding-top: 1.25rem;
   padding-bottom: .75rem;
@@ -195,6 +190,18 @@ header span.h1 {
   text-align: right;
 }
 
+#basketLogo {
+  -webkit-transition-duration: 340ms;
+          transition-duration: 340ms;
+  -webkit-transition-property: all;
+  transition-property: all;
+  font-size: 2rem;
+}
+
+#basketLogo a {
+  margin: auto;
+}
+
 footer.container-fluid {
   padding-top: 1rem;
   background-color: #0a080c;
@@ -204,35 +211,22 @@ footer.container-fluid * {
   color: #d4c5e2;
 }
 
-.article {
+.furniture {
   border: none;
+  -webkit-transition-duration: 340ms;
+          transition-duration: 340ms;
+  -webkit-transition-property: all;
+  transition-property: all;
 }
 
-.article .card-header {
-  background-color: #343a40;
+aside a {
+  -webkit-transition-duration: 340ms;
+          transition-duration: 340ms;
+  -webkit-transition-property: all;
+  transition-property: all;
 }
 
-.article .card-body {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.article .publication-date {
-  text-align: right;
-}
-
-.article .addFavorite {
-  font-size: 1.4rem;
-  position: absolute;
-  top: 80px;
-  right: 10px;
-}
-
-.article .addFavorite .far {
-  color: rgba(0, 0, 0, 0.2);
-}
-
-.article .addFavorite:hover {
-  color: yellow;
-  cursor: pointer;
+aside {
+  background-color: slategrey;
 }
 /*# sourceMappingURL=main.css.map */
