@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 3px;
 }
 
-#basketLogo:hover, .furniture:hover, aside a:hover {
+#basketLogo a:hover, .furniture:hover, aside a:hover {
   -webkit-transform-origin: center;
           transform-origin: center;
   -webkit-transform: scale(1.125);
@@ -166,6 +166,14 @@ body {
   margin-bottom: 3rem;
 }
 
+input:invalid {
+  border-color: red;
+}
+
+input:valid {
+  border-color: green;
+}
+
 header {
   padding-top: 1.25rem;
   padding-bottom: .75rem;
@@ -175,7 +183,10 @@ header {
 header .h1, header .h3, header i {
   color: transparent;
   background-image: linear-gradient(125deg, #df8620, #925dfe);
-  background-clip: text;
+  background-clip: content-box;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -ms-background-clip: text;
 }
 
 header .h1, header .h3 {

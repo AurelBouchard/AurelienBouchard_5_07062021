@@ -40,6 +40,7 @@ fetchMyAPI
 					newImg.setAttribute("class","img-fluid shadow");
 					newImg.setAttribute("src",`${articleObject.imageUrl}`);
 					newImg.setAttribute("alt",`meuble ${articleObject.name}`);
+					newImg.setAttribute("id","mainPicture");
 
 					divTopRow.appendChild(firstDiv);
 					firstDiv.appendChild(newA);
@@ -52,10 +53,13 @@ fetchMyAPI
 
 					let pTitle = document.createElement("p");
 					pTitle.setAttribute("class", "h2");
+					pTitle.setAttribute("id", "pTitle");
 					pTitle.textContent = `${articleObject.name}`;
 
 					let pPrice = document.createElement("p");
 					pPrice.setAttribute("class", "h3");
+					pPrice.setAttribute("id", "pPrice");
+					pPrice.setAttribute("value", `${articleObject.price}`);
 					pPrice.textContent = `${articleObject.price/100} €`;
 
 					let br = document.createElement("br");
@@ -77,6 +81,7 @@ fetchMyAPI
 					firstInput.setAttribute("id", "option0");
 					firstInput.setAttribute("autocomplete" ,"off");
 					firstInput.setAttribute("checked", "true");
+					firstInput.setAttribute("value" ,`${articleObject.varnish[0]}`);
 
 					let firstLabel = document.createElement("label");
 					firstLabel.setAttribute("class", "p-1 ml-2");
@@ -98,6 +103,7 @@ fetchMyAPI
 						newInput.setAttribute("name", "options");
 						newInput.setAttribute("id", `option${i}`);
 						newInput.setAttribute("autocomplete" ,"off");
+						newInput.setAttribute("value" ,`${articleObject.varnish[i]}`);
 
 						let newLabel = document.createElement("label");
 						newLabel.setAttribute("class", "p-1 ml-2");
@@ -116,6 +122,8 @@ fetchMyAPI
 					btnAddToBasket.setAttribute("id", "addToBasketBtn");
 					btnAddToBasket.setAttribute("class", "btn p-3 w-100");
 					btnAddToBasket.textContent = "Ajouter au panier";
+
+					btnAddToBasket.addEventListener("click", addToBasket);
 
 					divTopRow.appendChild(secDiv);
 					secDiv.appendChild(pTitle);
@@ -162,7 +170,7 @@ fetchMyAPI
 
 
 
-// récupération des thumnails pour l'aside
+// récupération des thumbnails pour l'aside
 const asideCol = document.getElementById("aside");
 
 const fetchApiForImages = fetch(`http://localhost:3000/api/furniture`);
@@ -205,4 +213,40 @@ fetchApiForImages
 function refresh() {
 	console.log("refresh");
 	setTimeout(function() {document.location.reload()},30);
+}
+
+
+// ADD TO BASKET FUNCTIONS
+
+function addToBasket() {
+	// create an object "article" width id, name, varnish, price and imageUrl :
+
+	// id already exist
+
+	// get name
+	let name = document.getElementById("pTitle").textContent;
+
+	// check wich option is checked
+	let varnish = document.querySelector("input[name=options]:checked").getAttribute("value");
+
+	// get price
+	let price = document.getElementById("pPrice").getAttribute("value")*1;
+
+	// get imageUrl
+	let imageUrl = document.getElementById("mainPicture").src;
+
+	const newArticleInBasket = new ArticleInBasket (id, name, varnish, price, imageUrl);
+
+
+	// check localStorage length and a name
+	let itemsInBasket = "orinoco"+localStorage.length;
+
+
+	// store this in localStorage
+	localStorage.setItem(itemsInBasket, JSON.stringify(newArticleInBasket));
+
+	// check item properly added then message/alert
+	//		message is : continuer achats ou voir le panier (2 boutons = 2 liens)
+	//		alert is : une erreur s'est produite
+
 }
