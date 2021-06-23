@@ -8,7 +8,10 @@ header {                        // A VERIFIER
 
     color: $header-color;
     background-image: $bg-orinoco;
-    background-clip: text ;
+    background-clip: content-box;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -ms-background-clip: text;
    }
 
    .h1, .h3 {
@@ -36,8 +39,9 @@ header {                        // A VERIFIER
 
     font-size: $FS_logo;
 
-    a { margin : auto; }
-    
-    @extend %hoverScaleUp;
-    
+    a {
+        margin : auto;
+        @extend %hoverScaleUp;
+    }
+       
 }

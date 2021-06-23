@@ -48,78 +48,72 @@
 	</header>
 
 	<div class="container">
-		<div class="row justify-content-left">
-			<aside class="d-none d-sm-block col-sm-2 border-right border-dark" id="aside">
-				<div class="row my-5">
-					1
-				</div>
-				<div class="row my-5">
-					2
-				</div>
-				<div class="row my-5">
-					3
-				</div>
-				<div class="row my-5">
-					4
-				</div>
-				<div class="row my-5">
-					5
-				</div>
-			</aside>
-
-			<main class="col">
-				<div class="row">
-
-					<div class="col-md-7 m-3 p-0">
-						<a href=""><img src="/images/oak_1.jpg" alt="meuble CROSS TABLE" class="img-fluid"></a>
+		<main class="row">
+			<div class="col" id="main">
+				
+				<div class="row" id="basket">
+					<div class="col container justify-content-center" id="sadMessage">
+						<p class="text-center mt-5">Votre panier est vide.</p>
 					</div>
 
-					<div class="col m-3">
-						<p class="h2">Cross Table</p>
-						<p class="h3">599 €</p>
-						<br>
+					<div class="col" id="listing">
+						<!-- content added here by js -->
+						<button class="p-1 m-2" id="emptyBasket">Vider le panier</button>
+					</div>
 
-
+					<div class="col-12 col-md-4 border-left border-dark" id="summary">
 						<div class="row">
-							<p class="h5">Personnalisagffhytion du vernis :</p>
-							<div class="input-group mb-5">
-								<div class="form-check m-1">
-									<input type="radio" class="" name="options" id="option1" autocomplete="off" checked>
-									<label class="btn-primary p-1" for="option1">Checked</label>
-								</div>
-								<div class="form-check m-1">
-									<input type="radio" class="" name="options" id="option2" autocomplete="off">
-									<label class="btn-secondary p-1" for="option2">Checked</label>
-								</div>
-								<div class="form-check m-1">
-									<input type="radio" class="" name="options" id="option3" autocomplete="off">
-									<label class="btn-secondary p-1" for="option3">Checked</label>
-								</div>
-								<div class="form-check m-1">
-									<input type="radio" class="" name="options" id="option4" autocomplete="off">
-									<label class="btn-secondary p-1" for="option4">Checked</label>
-								</div>
-								<div class="form-check m-1">
-									<input type="radio" class="btgn-check" name="options" id="option5" autocomplete="off">
-									<label class="btn-secondary p-1" for="option5">Checked</label>
-								</div>
-							</div>
-							<button id="addToBasketBtn" class="btn p-3">Ajouter au panier</button>
+							<p class="h2 mx-auto">Total du panier :</p>
 						</div>
-
-					</div>
+						<div class="row p-3" id="sumOfBasket">
+							<!-- p content modified by js -->
+							<p class="h2 mx-auto" id="priceP"></p>
+						</div>
+						<div class="row p-3">
+							<button class="btn mx-auto" id="validate">Je passe commande</button>
+						</div>
+					</div>				
 				</div>
-
-				<div class="row">
-					<div class="col m-3">
-						<p class="h4">Description :</p>
-						<p class="h5">olkjeroigjh poirjgpo poijertpgo gpobn jgnr thojbnthnpoerythjp t ohpzrtugh ppi gpt gtpbh    uhoigyd teh gv,jbgvjhfc hgfc gv jhfgh fvk hbk ghchgf ckjh 22!</p>
+				
+				<div class="row container mt-5" id="form">
+					<p class="h3 mb-3">Formulaire de contact</p>
+	
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="firstName">Prénom</span>
+						<input type="text" class="form-control" placeholder="Camille" aria-label="prenom"
+							aria-describedby="firstName" required maxlength="30" id="inputFirstName">
 					</div>
+
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="lastName">Nom</span>
+						<input type="text" class="form-control" placeholder="Dupuis" aria-label="nom"
+							aria-describedby="lastName" required maxlength="30" id="inputLastName">
+					</div>
+
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="email">email</span>
+						<input type="email" class="form-control" placeholder="exemple@gmail.com"
+							aria-label="email" aria-describedby="email" required maxlength="150" id="inputEmail">
+					</div>
+
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="address">Adresse</span>
+						<input type="text" class="form-control" placeholder="2 rue de la Paix" aria-label="adresse"
+							aria-describedby="address" required maxlength="150" id="inputAddress">
+					</div>
+
+
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="city">Ville</span>
+						<input type="text" class="form-control" placeholder="Toulouse" aria-label="ville"
+							aria-describedby="city" required maxlength="40" id="inputCity">
+					</div>
+
+					<button class="btn mx-auto" id="validateSec">Je passe commande</button>
 				</div>
-			</main>
+			</div>
 
-
-		</div>
+		</main>
 	</div>
 
 	<footer class="container-fluid mb-0 ">
@@ -141,7 +135,8 @@
 			</div>
 		</div>
 	</footer>
-
+	
+	<script src="../js/__classes.js"></script>
 	<script src="../js/basket.js"></script>
 </body>
 
