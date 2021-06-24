@@ -133,7 +133,7 @@ function sendOrder(){
 	if (!isValidEmail(email)) {
 		alert("Attention format d'eamil non valide.");
 		validInputs = false;
-	};
+	}
 	
 	if (validInputs) {
 	// if ok prepare list of articles

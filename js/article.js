@@ -1,14 +1,3 @@
-const mainCol = document.getElementById("main");
-
-// get the id of the current article from the url
-// i.e. http://192.168.0.200:5500/pages/article.html#5be9cc611c9d440000c1421e
-
-function getTheIdFromURL(URL) {
-	return URL.slice(URL.indexOf("#")+1);
-};
-
-
-
 // demande d'un article à l'API : GET http://localhost:3000/api/:id
 const id = getTheIdFromURL(document.URL);
 
@@ -54,11 +43,12 @@ fetchMyAPI
 					nextOption.textContent = `${articleObject.varnish[i]}`;
 
 					optionSelector.appendChild(nextOption);				
-				};
+				}
 
 				let btnAddToBasket = document.getElementById("addToBasketBtn");
 				btnAddToBasket.addEventListener("click", addToBasket);
 
+				let pDescription = document.getElementById("pDescription");
 				pDescription.textContent = `${articleObject.description}`;
 			});
 	} )
@@ -108,6 +98,11 @@ fetchApiForImages
 		console.log(returnedError.json());
 	} );
 
+function getTheIdFromURL(URL) {
+	// get the id of the current article from the url
+	// i.e. http://192.168.0.200:5500/pages/article.html#5be9cc611c9d440000c1421e
+	return URL.slice(URL.indexOf("#")+1);
+}
 
 function refresh() {
 	console.log("refresh");
@@ -134,7 +129,7 @@ function addToBasket() {
 	// get imageUrl
 	let imageUrl = document.getElementById("mainPicture").src;
 
-	const linkToPicturerticleInBasket = new ArticleInBasket (id, name, varnish, price, imageUrl);
+	const articleInBasket = new ArticleInBasket (id, name, varnish, price, imageUrl);
 
 
 	// check localStorage length and a name
@@ -142,7 +137,7 @@ function addToBasket() {
 
 
 	// store this in localStorage
-	localStorage.setItem(itemsInBasket, JSON.stringify(linkToPicturerticleInBasket));
+	localStorage.setItem(itemsInBasket, JSON.stringify(articleInBasket));
 
 	// check item properly added then message/alert
 	//		message is : continuer achats ou voir le panier (2 boutons = 2 liens)
