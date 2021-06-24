@@ -57,7 +57,32 @@
 			</aside>
 	
 			<main class="col" id="main">
-				<!-- js include content here -->
+				<div class="row">
+					<div class="col-md-8 m-3 p-0">
+						<a href="" id="linkToPicture" title="Voir en grand" rel="noreferrer noopener" target="_blank">
+							<img src="#" alt="no" class="img-fluid shadow" id="mainPicture">
+						</a>	
+					</div>
+
+					<div class="col-md-3">
+						<p class="h2" id="pTitle"></p>
+						<p class="h3" id="pPrice"></p>
+						<br id="spacingBeforeOptions">
+						<p class="h5">Sélectionez un vernis :</p>
+						<select class="form-select" aria-label="selection du vernis" id="optionSelector">
+							<!-- options are made by js-->
+						</select>
+						<button class="btn m-2 p-3 w-100" id="addToBasketBtn">Ajouter au panier</button>
+					</div>
+
+
+				</div>
+				<div class="row">
+					<div class="col m-3">
+						<p class="h4">Description :</p>
+						<p class="h5" id="pDescription"></p>
+					</div>
+				</div>
 			</main>
 		</div>
 	</div>

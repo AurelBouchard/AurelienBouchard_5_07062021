@@ -21,154 +21,45 @@ fetchMyAPI
 		returnedResponse.json()
 			.then( articleObject => {
 
-					//////////////////////////////////////////////////////
-					//													//
-					//    SEPARER LE STATIQUE ET LE DYNAMIQUE !!!!!		//
-					//													//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-					// top row includes : picture, price, title, options, addToBasket btn
-					let divTopRow = document.createElement("div");
-					divTopRow.setAttribute("class", "row");
+				let linkToPicture = document.getElementById("linkToPicture");
+				linkToPicture.setAttribute("href", `${articleObject.imageUrl}`);
 
 
-					// first div handles picture as a link
-					let firstDiv = document.createElement("div");
-					firstDiv.setAttribute("class", "col-md-8 m-3 p-0");
-
-					let newA = document.createElement("a");
-					newA.setAttribute("href", `${articleObject.imageUrl}`);
-					newA.setAttribute("title", "Voir en grand");
-					newA.setAttribute("rel", "noreferrer noopener");
-					newA.setAttribute("target", "_blank");
-
-					let newImg = document.createElement("img");
-					newImg.setAttribute("class","img-fluid shadow");
-					newImg.setAttribute("src",`${articleObject.imageUrl}`);
-					newImg.setAttribute("alt",`meuble ${articleObject.name}`);
-					newImg.setAttribute("id","mainPicture");
-
-					divTopRow.appendChild(firstDiv);
-					firstDiv.appendChild(newA);
-					newA.appendChild(newImg);
+				let mainPicture = document.getElementById("mainPicture");
+				mainPicture.setAttribute("src",`${articleObject.imageUrl}`);
+				mainPicture.setAttribute("alt",`meuble ${articleObject.name}`);
 
 
-					// second div handles title, price, options, addToBasket btn
-					let secDiv = document.createElement("div");
-					secDiv.setAttribute("class", "col-md-3");
-
-					let pTitle = document.createElement("p");
-					pTitle.setAttribute("class", "h2");
-					pTitle.setAttribute("id", "pTitle");
-					pTitle.textContent = `${articleObject.name}`;
-
-					let pPrice = document.createElement("p");
-					pPrice.setAttribute("class", "h3");
-					pPrice.setAttribute("id", "pPrice");
-					pPrice.setAttribute("value", `${articleObject.price}`);
-					pPrice.textContent = `${articleObject.price/100} €`;
-
-					let br = document.createElement("br");
-
-					let pOptions = document.createElement("p");
-					pOptions.setAttribute("class", "h5");
-					pOptions.textContent = "Personnalisation du vernis :";
-
-					let divOptions = document.createElement("div");
-					divOptions.setAttribute("class", "input-group mb-5");
-
-					// first option is checked by default
-					let divFirstOption = document.createElement("div");
-					divFirstOption.setAttribute("class", "form-check m-1");
-
-					let firstInput = document.createElement("input");
-					firstInput.setAttribute("type", "radio");
-					firstInput.setAttribute("name", "options");
-					firstInput.setAttribute("id", "option0");
-					firstInput.setAttribute("autocomplete" ,"off");
-					firstInput.setAttribute("checked", "true");
-					firstInput.setAttribute("value" ,`${articleObject.varnish[0]}`);
-
-					let firstLabel = document.createElement("label");
-					firstLabel.setAttribute("class", "p-1 ml-2");
-					firstLabel.setAttribute("for", "option0");
-					firstLabel.textContent = articleObject.varnish[0];
-
-					divFirstOption.appendChild(firstInput);
-					divFirstOption.appendChild(firstLabel);
-					divOptions.appendChild(divFirstOption);
-
-					// if more than 1 option :
-
-					for (let i =1; i < articleObject.varnish.length; i++ ) {
-						let divNewOption = document.createElement("div");
-						divNewOption.setAttribute("class", "form-check m-1");
-
-						let newInput = document.createElement("input");
-						newInput.setAttribute("type", "radio");
-						newInput.setAttribute("name", "options");
-						newInput.setAttribute("id", `option${i}`);
-						newInput.setAttribute("autocomplete" ,"off");
-						newInput.setAttribute("value" ,`${articleObject.varnish[i]}`);
-
-						let newLabel = document.createElement("label");
-						newLabel.setAttribute("class", "p-1 ml-2");
-						newLabel.setAttribute("for", `option${i}`);
-						newLabel.textContent = articleObject.varnish[i];
-
-						divNewOption.appendChild(newInput);
-						divNewOption.appendChild(newLabel);
-						divOptions.appendChild(divNewOption);
-					}
+				let pTitle = document.getElementById("pTitle");
+				pTitle.textContent = `${articleObject.name}`;
 
 
-					
-
-					let btnAddToBasket = document.createElement("button");
-					btnAddToBasket.setAttribute("id", "addToBasketBtn");
-					btnAddToBasket.setAttribute("class", "btn p-3 w-100");
-					btnAddToBasket.textContent = "Ajouter au panier";
-
-					btnAddToBasket.addEventListener("click", addToBasket);
-
-					divTopRow.appendChild(secDiv);
-					secDiv.appendChild(pTitle);
-					secDiv.appendChild(pPrice);
-					secDiv.appendChild(br);
-					secDiv.appendChild(pOptions);
-					secDiv.appendChild(divOptions);
-					secDiv.appendChild(btnAddToBasket);
-
-					mainCol.appendChild(divTopRow);
-
-					// bottom row includes description
-
-					let divBottomRow = document.createElement("div");
-					divBottomRow.setAttribute("class", "row");
-
-					let divCol = document.createElement("div");
-					divCol.setAttribute("class", "col m-3");
-
-					let pDescTitle = document.createElement("p");
-					pDescTitle.setAttribute("class", "h4");
-					pDescTitle.textContent = "Description :"; 
-
-					let pDescription = document.createElement("p");
-					pDescription.setAttribute("class", "h5");
-					pDescription.textContent = `${articleObject.description}`;
+				let pPrice = document.getElementById("pPrice");
+				pPrice.setAttribute("value", `${articleObject.price}`);
+				pPrice.textContent = `${articleObject.price/100} €`;
 
 
-					divBottomRow.appendChild(divCol);
-					divCol.appendChild(pDescTitle);
-					divCol.appendChild(pDescription);
+				let firstOption = document.createElement("option");
+				firstOption.setAttribute("selected", "true");
+				firstOption.textContent = `${articleObject.varnish[0]}`;
 
-					mainCol.appendChild(divBottomRow);
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-						//		STATIQUE => article.html
+				let optionSelector = document.getElementById("optionSelector");
+				optionSelector.appendChild(firstOption);
 
 
+				// // if more than 1 option :
+
+				for (let i =1; i < articleObject.varnish.length; i++ ) {
+					let nextOption = document.createElement("option");
+					nextOption.textContent = `${articleObject.varnish[i]}`;
+
+					optionSelector.appendChild(nextOption);				
+				};
+
+				let btnAddToBasket = document.getElementById("addToBasketBtn");
+				btnAddToBasket.addEventListener("click", addToBasket);
+
+				pDescription.textContent = `${articleObject.description}`;
 			});
 	} )
 	.catch( returnedError => {
@@ -194,18 +85,18 @@ fetchApiForImages
 					let newDiv = document.createElement("div");
 					newDiv.setAttribute("class", "row my-3 pr-sm-2 pr-md-3 pr-lg-4");
 
-					let newA = document.createElement("a");
-					newA.setAttribute("href", `article.html#${element._id}`);
-					newA.setAttribute("class", "shadow");
-					newA.setAttribute("title", `${element.name}`);
+					let linkToPicture = document.createElement("a");
+					linkToPicture.setAttribute("href", `article.html#${element._id}`);
+					linkToPicture.setAttribute("class", "shadow");
+					linkToPicture.setAttribute("title", `${element.name}`);
 
-					let newImg = document.createElement("img");
-					newImg.setAttribute("class", "img-thumbnail");
-					newImg.setAttribute("src", `${element.imageUrl}`);
-					newImg.setAttribute("alt", `lien vers ${element.name}`);
+					let mainPicture = document.createElement("img");
+					mainPicture.setAttribute("class", "img-thumbnail");
+					mainPicture.setAttribute("src", `${element.imageUrl}`);
+					mainPicture.setAttribute("alt", `lien vers ${element.name}`);
 
-					newA.appendChild(newImg);
-					newDiv.appendChild(newA);					
+					linkToPicture.appendChild(mainPicture);
+					newDiv.appendChild(linkToPicture);					
 					asideCol.appendChild(newDiv);
 
 					asideCol.lastElementChild.addEventListener('click', refresh);
@@ -235,7 +126,7 @@ function addToBasket() {
 	let name = document.getElementById("pTitle").textContent;
 
 	// check wich option is checked
-	let varnish = document.querySelector("input[name=options]:checked").getAttribute("value");
+	let varnish = document.getElementById("optionSelector").value;
 
 	// get price
 	let price = document.getElementById("pPrice").getAttribute("value")*1;
@@ -243,7 +134,7 @@ function addToBasket() {
 	// get imageUrl
 	let imageUrl = document.getElementById("mainPicture").src;
 
-	const newArticleInBasket = new ArticleInBasket (id, name, varnish, price, imageUrl);
+	const linkToPicturerticleInBasket = new ArticleInBasket (id, name, varnish, price, imageUrl);
 
 
 	// check localStorage length and a name
@@ -251,7 +142,7 @@ function addToBasket() {
 
 
 	// store this in localStorage
-	localStorage.setItem(itemsInBasket, JSON.stringify(newArticleInBasket));
+	localStorage.setItem(itemsInBasket, JSON.stringify(linkToPicturerticleInBasket));
 
 	// check item properly added then message/alert
 	//		message is : continuer achats ou voir le panier (2 boutons = 2 liens)
