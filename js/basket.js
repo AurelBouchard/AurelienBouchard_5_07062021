@@ -1,5 +1,5 @@
 
-const isBasketEmpty = localStorage.getItem("orinoco0") == null;
+const isBasketEmpty = localStorage.getItem("article0") == null;
 
 const priceP = document.getElementById("priceP");
 
@@ -38,7 +38,7 @@ if (isBasketEmpty) {
 		i++;
 	}
 	// do it while there is an other orinoco articles up next
-	while (localStorage.getItem(`orinoco${i}`) !== null); 
+	while (localStorage.getItem(`article${i}`) !== null); 
 
 	// move emptyBasketBtn after list of articles
 	listing.insertAdjacentElement("beforeend", emptyBasketBtn);
@@ -49,7 +49,7 @@ if (isBasketEmpty) {
 function addNewLineInListing(index) {
 
 	let newLine = document.createElement("div");
-	let hasNext = localStorage.getItem(`orinoco${index+1}`) !== null;
+	let hasNext = localStorage.getItem(`article${index+1}`) !== null;
 	hasNext ? newLine.setAttribute("class","row border-bottom border-grey mr-3") :
 		// different border-bottom if no line after
 		newLine.setAttribute("class","row border-bottom border-dark mr-3");
@@ -58,20 +58,24 @@ function addNewLineInListing(index) {
 	article.setAttribute("class","mb-2 mt-4");
 
 	// control
-	console.log(JSON.parse(localStorage.getItem(`orinoco${index}`)));
+	console.log(JSON.parse(localStorage.getItem(`article${index}`)));
 
 	let spanTitre = document.createElement("span");
-	spanTitre.textContent = JSON.parse(localStorage.getItem(`orinoco${index}`)).title;
+	spanTitre.textContent = JSON.parse(localStorage.getItem(`article${index}`)).title;
 	
 	let spanOption = document.createElement("span");
-	spanOption.textContent = ", couleur du vernis : "+JSON.parse(localStorage.getItem(`orinoco${index}`)).varnish;
+	spanOption.textContent = ", couleur du vernis : "+JSON.parse(localStorage.getItem(`article${index}`)).varnish;
 
 	let spanPrice = document.createElement("span");
 	spanPrice.setAttribute("class","d-inline-block float-right");
-	spanPrice.textContent = JSON.parse(localStorage.getItem(`orinoco${index}`)).price/100+" €";
+	spanPrice.textContent = JSON.parse(localStorage.getItem(`article${index}`)).price/100+" €";
 
-	updateSum(JSON.parse(localStorage.getItem(`orinoco${index}`)).price/100, "plus");
-	listOfArticles.push(JSON.parse(localStorage.getItem(`orinoco${index}`)).id);
+	updateSum(JSON.parse(localStorage.getItem(`article${index}`)).price/100, "plus");
+	listOfArticles.push(JSON.parse(localStorage.getItem(`article${index}`)).id);
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+	// introduction d'une erreur qui n'est pas "cach" dans la promesse
+	//listOfArticles.push(JSON.parse(localStorage.getItem(`orinoco${index}`)).title);
 
 	listing.appendChild(newLine);
 	newLine.appendChild(article);
@@ -138,32 +142,17 @@ function sendOrder(){
 	// then prepare object "order"
 	// constructor(firstName, lastName, address, city, email, listOfArticles)
 	const contact = new Contact(firstName, lastName, address, city, email);
-	//const order = new Order(contact, listOfArticles);
-
-	const order = {
-		"contact" : contact,
-		"products" : listOfArticles
-	}
-
-	const test = `{"contact":{"firstName":"Stuart","lastName":"Minion","address":"eeeeee","city":"ooooo","email":"devil@gru.org"},"products":["5be9cc611c9d440000c1421e"]}`;
+	const order = new Order(contact, listOfArticles);
 
 	let orderJson = JSON.stringify(order);
-	let testJson = JSON.stringify(test);
-
-	// control
-	//console.log(order);
-	//console.log(orderJson);
-
-	// then send object order with POST method to server
 
 	postToServer(orderJson);
-
 	};
 };
 
 function isOnlyText(text) {
 	// pattern is ^[a-zA-Z\-'\ ]{1,40}$
-	const pattern = /^[a-zA-Z\-'\ ]{1,40}$/;
+	const pattern = /^[a-zA-Z\-'éèêö\ ]{1,40}$/;
 
 	return pattern.test(text);
 };
@@ -191,21 +180,37 @@ function postToServer(order) {
 
 	fetchApiWithOrder
 		.then( returnedResponse => {
-			// deal with “returnedResponse”
 			returnedResponse.json()
-				.then( arrayOfObjects => {
-						console.log("youhou "+arrayOfObjects);
+				.then( object => {
+					console.log("youhou !!");
+					console.log(object);
+					
+					// empty localStorage and put confirOrder Object in
+					localStorage.clear();
+					localStorage.setItem("orderConfirm",JSON.stringify(object));
+
+					// jump to orderconfirm.html
+					//setTimeout(function() {},20000);
+						window.location = "http://localhost:5500/pages/orderconfirm.html"
+					
 
 					
 				})
 				.catch( returnedError => {
 					// deal with “returnedError”
 					console.log("2/ "+returnedError);
+					alertMessage(returnedError);
 				} );
 		} )
 		.catch( returnedError => {
 			// deal with “returnedError”
 			console.log("1/ "+returnedError);
+			alertMessage(returnedError);
 		} );
+
+};
+
+function alertMessage(message){
+	alert("Une erreur s'est produite. Détails : "+message);
 
 };

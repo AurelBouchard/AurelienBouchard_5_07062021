@@ -21,6 +21,12 @@ fetchMyAPI
 		returnedResponse.json()
 			.then( articleObject => {
 
+					//////////////////////////////////////////////////////
+					//													//
+					//    SEPARER LE STATIQUE ET LE DYNAMIQUE !!!!!		//
+					//													//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 					// top row includes : picture, price, title, options, addToBasket btn
 					let divTopRow = document.createElement("div");
 					divTopRow.setAttribute("class", "row");
@@ -158,7 +164,9 @@ fetchMyAPI
 
 					mainCol.appendChild(divBottomRow);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+						//		STATIQUE => article.html
 
 
 			});
@@ -239,7 +247,7 @@ function addToBasket() {
 
 
 	// check localStorage length and a name
-	let itemsInBasket = "orinoco"+localStorage.length;
+	let itemsInBasket = "article"+localStorage.length;
 
 
 	// store this in localStorage
