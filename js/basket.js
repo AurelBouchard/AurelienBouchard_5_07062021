@@ -191,7 +191,7 @@ function postToServer(order) {
 
 					// jump to orderconfirm.html
 					//setTimeout(function() {},20000);
-						window.location = "http://localhost:5500/pages/orderconfirm.html"
+						window.location = `http://localhost:${port}/pages/orderconfirm.html`
 					
 
 					

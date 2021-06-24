@@ -26,5 +26,5 @@ function createContent() {
 	messageZone.appendChild(messageLine2);
 	messageZone.appendChild(messageLine3);
 
-	localStorage.clear();
+	setTimeout(function() {localStorage.clear()}, 500);
 };
