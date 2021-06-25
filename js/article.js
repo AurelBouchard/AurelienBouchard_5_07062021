@@ -68,154 +68,46 @@ function addToBasket() {
 	if (!hasBasket) createBasketInLocalStorage();
 
 	let basket = JSON.parse(localStorage.getItem("basket"));
-	console.log("basket is :");
+/*	console.log("basket is :");
 	console.log(basket);
 	console.log("basket.articles is :");
-	console.log(basket.articles);
+	console.log(basket.articles);*/
 
 	let articleExistInBasket = false;
 
 	// check for an existing IDENTICAL article in basket only if basket is not empty
 	if (basket.articles.length>0) {
 		for (let index in basket.articles) {
-			console.log("checking basket.articles at index "+index)
+/*			console.log("checking basket.articles at index "+index)
 			console.log("boucle for");
 
 			console.log(basket.articles[index].id+" // "+articleToBeAdded.id);
-			console.log(basket.articles[index].varnish+" // "+articleToBeAdded.varnish);
+			console.log(basket.articles[index].varnish+" // "+articleToBeAdded.varnish);*/
 
 			if ((basket.articles[index].id === articleToBeAdded.id) && (basket.articles[index].varnish === articleToBeAdded.varnish)) {
 				articleExistInBasket = true;
-				console.log("boucle try : if");
+/*				console.log("boucle try : if");*/
 
 				updateQuantityUp(basket, index);
 				localStorage.setItem("basket", JSON.stringify(basket));
-
 			}
-			/*else {
-				console.log("boucle try : else");
-
-				// add a new article in basket object .articles[] AT THE END !!
-				addNewArticleInBasket(basket,articleToBeAdded,basket.articles.length);
-				localStorage.setItem("basket", JSON.stringify(basket));
-			}
-			;*/
-
-
-
 		}
-
 	}
 
 	if (!articleExistInBasket) {
 		// if basket is empty OR no existing identical article : add new article
 		addNewArticleInBasket(basket, articleToBeAdded, basket.articles.length);
 		localStorage.setItem("basket", JSON.stringify(basket));
-
 	}
-
-
-
 
 	console.log("finaly")
 	console.log(localStorage.getItem("basket"));
 }
 
 
-const asideLink = (miniCard) => {
-	let newDiv = document.createElement("div");
-	newDiv.setAttribute("class", "row my-3 pr-sm-2 pr-md-3 pr-lg-4");
-
-	let linkToPicture = document.createElement("a");
-	linkToPicture.setAttribute("href", `article.html?id=${miniCard._id}`);
-	linkToPicture.setAttribute("class", "shadow");
-	linkToPicture.setAttribute("title", `${miniCard.name}`);
-
-	let mainPicture = document.createElement("img");
-	mainPicture.setAttribute("class", "img-thumbnail");
-	mainPicture.setAttribute("src", `${miniCard.imageUrl}`);
-	mainPicture.setAttribute("alt", `lien vers ${miniCard.name}`);
-
-	linkToPicture.appendChild(mainPicture);
-	newDiv.appendChild(linkToPicture);
-
-	return newDiv;
-};
-
-function updateArticle(article) {
-	let linkToPicture = document.getElementById("linkToPicture");
-	linkToPicture.setAttribute("href", `${article.imageUrl}`);
-
-	let mainPicture = document.getElementById("mainPicture");
-	mainPicture.setAttribute("src",`${article.imageUrl}`);
-	mainPicture.setAttribute("alt",`meuble ${article.name}`);
-
-	let pTitle = document.getElementById("pTitle");
-	pTitle.textContent = `${article.name}`;
-
-	let pPrice = document.getElementById("pPrice");
-	pPrice.setAttribute("value", `${article.price}`);
-	pPrice.textContent = `${article.price/100} €`;
-
-	let firstOption = document.createElement("option");
-	firstOption.setAttribute("selected", "true");
-	firstOption.textContent = `${article.varnish[0]}`;
-
-	let optionSelector = document.getElementById("optionSelector");
-	optionSelector.appendChild(firstOption);
-
-	// // if more than 1 option :
-	for (let i =1; i < article.varnish.length; i++ ) {
-		let nextOption = document.createElement("option");
-		nextOption.textContent = `${article.varnish[i]}`;
-
-		optionSelector.appendChild(nextOption);
-	}
-
-	let btnAddToBasket = document.getElementById("addToBasketBtn");
-	btnAddToBasket.addEventListener("click", addToBasket);
-
-	let pDescription = document.getElementById("pDescription");
-	pDescription.textContent = `${article.description}`;
-}
-
-function createBasketInLocalStorage() {
-	console.log("createBasketInLocalStorage");
-	const emptyBasket = {
-		articles : [],
-		data : {
-			nOfArticles:0,
-			totalPrice:0
-		}
-	}
-	localStorage.setItem("basket", JSON.stringify(emptyBasket));
-	console.log(localStorage.getItem("basket"));
-}
-
-function updateQuantityUp(currentBasket, indexInArticles) {
-	console.log("update UP")
-	// update quantities
-	currentBasket.articles[indexInArticles].quantity++;
-	currentBasket.data.nOfArticles++;
-	// update total price of basket
-	currentBasket.data.totalPrice += currentBasket.articles[indexInArticles].price;
-	console.log("new total price :");
-	console.log(currentBasket.data.totalPrice);
-}
-
-function updateQuantityDown(currentBasket) {
-	// update quantities
-	currentBasket.articles[i].quantity--;
-	currentBasket.data.nOfArticles--;
-	// update total price of basket
-	currentBasket.data.totalPrice -= currentBasket.articles[i].price;
-}
-
 function addNewArticleInBasket(currentBasket, articleToBeAdded, index) {
-
 	currentBasket.articles.push(articleToBeAdded);
 	// then update quantity
 	updateQuantityUp(currentBasket, index);
-
 }
 

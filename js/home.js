@@ -1,4 +1,4 @@
-// import {createCard} from "./templates";
+//import {createCard} from "./templates";
 
 // AFFICHAGE DES ARTICLES MEUBLEs
 const panel = document.getElementById("panel");
@@ -22,7 +22,7 @@ getFurnitures
 	} );
 
 
-export {};
+//export {};
 
 const createCard = (furniture) => {
 	let newDiv = document.createElement("div");
