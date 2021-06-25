@@ -52,22 +52,73 @@ function addToBasket() {
 	let varnish = document.getElementById("optionSelector").value;
 	let price = document.getElementById("pPrice").getAttribute("value")*1;
 	let imageUrl = document.getElementById("mainPicture").src;
+	let quantity = 0;
 
-	const articleInBasket = new ArticleInBasket (productId, name, varnish, price, imageUrl);
-
-
-	// check localStorage length and a name ----------------------------------------------------- A CHANGER
-	let itemsInBasket = "article"+localStorage.length;
+	const articleToBeAdded = new ArticleInBasket (productId, name, varnish, price, imageUrl, quantity);
 
 		// IL FAUT VERIFIER LA PRESENCE D'UN OBJET BASKET
 		// SI ABSENT CREER, PUIS
 		// VERIFIER LA PRESENCE D'UN OBJET IDENTIQUE
 		// AJOUTER L'OBJET : SOIT EN AUGMENTANT LA Q SOIT EN EN CREANT UN NOUVEL OBJET
 
-	// store this in localStorage
-	localStorage.setItem(itemsInBasket, JSON.stringify(articleInBasket));
+	// check if basket object exists in localStorage
+	const hasBasket = localStorage.getItem("basket") !== null;
+
+	// if no basket => create it
+	if (!hasBasket) createBasketInLocalStorage();
+
+	let basket = JSON.parse(localStorage.getItem("basket"));
+	console.log("basket is :");
+	console.log(basket);
+	console.log("basket.articles is :");
+	console.log(basket.articles);
+
+	let articleExistInBasket = false;
+
+	// check for an existing IDENTICAL article in basket only if basket is not empty
+	if (basket.articles.length>0) {
+		for (let index in basket.articles) {
+			console.log("checking basket.articles at index "+index)
+			console.log("boucle for");
+
+			console.log(basket.articles[index].id+" // "+articleToBeAdded.id);
+			console.log(basket.articles[index].varnish+" // "+articleToBeAdded.varnish);
+
+			if ((basket.articles[index].id === articleToBeAdded.id) && (basket.articles[index].varnish === articleToBeAdded.varnish)) {
+				articleExistInBasket = true;
+				console.log("boucle try : if");
+
+				updateQuantityUp(basket, index);
+				localStorage.setItem("basket", JSON.stringify(basket));
+
+			}
+			/*else {
+				console.log("boucle try : else");
+
+				// add a new article in basket object .articles[] AT THE END !!
+				addNewArticleInBasket(basket,articleToBeAdded,basket.articles.length);
+				localStorage.setItem("basket", JSON.stringify(basket));
+			}
+			;*/
 
 
+
+		}
+
+	}
+
+	if (!articleExistInBasket) {
+		// if basket is empty OR no existing identical article : add new article
+		addNewArticleInBasket(basket, articleToBeAdded, basket.articles.length);
+		localStorage.setItem("basket", JSON.stringify(basket));
+
+	}
+
+
+
+
+	console.log("finaly")
+	console.log(localStorage.getItem("basket"));
 }
 
 
@@ -127,3 +178,44 @@ function updateArticle(article) {
 	let pDescription = document.getElementById("pDescription");
 	pDescription.textContent = `${article.description}`;
 }
+
+function createBasketInLocalStorage() {
+	console.log("createBasketInLocalStorage");
+	const emptyBasket = {
+		articles : [],
+		data : {
+			nOfArticles:0,
+			totalPrice:0
+		}
+	}
+	localStorage.setItem("basket", JSON.stringify(emptyBasket));
+	console.log(localStorage.getItem("basket"));
+}
+
+function updateQuantityUp(currentBasket, indexInArticles) {
+	console.log("update UP")
+	// update quantities
+	currentBasket.articles[indexInArticles].quantity++;
+	currentBasket.data.nOfArticles++;
+	// update total price of basket
+	currentBasket.data.totalPrice += currentBasket.articles[indexInArticles].price;
+	console.log("new total price :");
+	console.log(currentBasket.data.totalPrice);
+}
+
+function updateQuantityDown(currentBasket) {
+	// update quantities
+	currentBasket.articles[i].quantity--;
+	currentBasket.data.nOfArticles--;
+	// update total price of basket
+	currentBasket.data.totalPrice -= currentBasket.articles[i].price;
+}
+
+function addNewArticleInBasket(currentBasket, articleToBeAdded, index) {
+
+	currentBasket.articles.push(articleToBeAdded);
+	// then update quantity
+	updateQuantityUp(currentBasket, index);
+
+}
+

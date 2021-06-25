@@ -1,13 +1,13 @@
 // common classes used by several js
 
-// object articleInBasket are named "orinoco${i}", i = (0..9) 
 class ArticleInBasket {
-	constructor(id, title, varnish, price, imageUrl){
+	constructor(id, title, varnish, price, imageUrl, quantity){
 		this.id			= id;
 		this.title		= title;
 		this.varnish	= varnish;
 		this.price		= price;
 		this.imageUrl	= imageUrl;
+		this.quantity	= quantity;
 	}
 };
 
