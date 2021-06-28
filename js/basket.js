@@ -55,13 +55,13 @@ function clearLocalStorageThenRefresh() {
 }
 
 function refresh() {
-	console.log("refresh after 1s");
+	console.log("refresh after 80ms");
 	setTimeout(function() {document.location.reload()},80);
 }
 
 
 
-function sendOrder(){
+function sendOrder(currentBasket){
 	// get inputs values :
 	let firstName = document.getElementById("inputFirstName").value;
 	let lastName = document.getElementById("inputLastName").value;
@@ -91,17 +91,20 @@ function sendOrder(){
 	}
 	
 	if (validInputs) {
-	// if ok prepare list of articles
-	// done
-	
-	// then prepare object "order"
-	// constructor(firstName, lastName, address, city, email, listOfArticles)
-	const contact = new Contact(firstName, lastName, address, city, email);
-	const order = new Order(contact, basket.articles);
+		// if ok prepare list of articles
+		const listOfArticles = [];
+		for (let each of basket.articles) {
+			listOfArticles.push(each.id);
+		}
 
-	let orderJson = JSON.stringify(order);
+		// then prepare object "order"
+		// constructor(firstName, lastName, address, city, email, listOfArticles)
+		const contact = new Contact(firstName, lastName, address, city, email);
+		const order = new Order(contact, listOfArticles);
 
-	postToServer(orderJson);
+		let orderJson = JSON.stringify(order);
+
+		postToServer(orderJson);
 	}
 }
 
@@ -121,8 +124,6 @@ function isValidEmail(email) {
 }
 
 function postToServer(order) {
-	console.log(order);
-
 
 	const fetchApiWithOrder = fetch(`http://localhost:3000/api/furniture/order`,{
 		method: "POST",
@@ -140,15 +141,13 @@ function postToServer(order) {
 					console.log("youhou !!");
 					console.log(object);
 					
-					// empty localStorage and put confirOrder Object in
+					// empty localStorage and put orderConfirm Object in
 					localStorage.clear();
 					localStorage.setItem("orderConfirm",JSON.stringify(object));
 
 					// jump to orderconfirm.html
 					window.location = `http://localhost:${port}/pages/orderconfirm.html`
-					
 
-					
 				})
 				.catch( returnedError => {
 					// deal with “returnedError”

@@ -1,15 +1,15 @@
 // if user come with no confirmOrder object in local storage => home.html
 const isNoOrderConfirm = localStorage.getItem("orderConfirm") == null;
 
-isNoOrderConfirm ? window.location = "http://localhost:5500/pages/home.html" : createContent();
+isNoOrderConfirm ? window.location = `http://localhost:${port}/pages/home.html` : createContent();
 
 function createContent() {
 	// getting data from localStorage
-	const orderId = JSON.parse(localStorage.getItem("orderConfirm")).orderId;
-	const fullName = JSON.parse(localStorage.getItem("orderConfirm")).contact.firstName +" "+
-					JSON.parse(localStorage.getItem("orderConfirm")).contact.lastName;
-	const fullAddress = JSON.parse(localStorage.getItem("orderConfirm")).contact.address +" "+
-						JSON.parse(localStorage.getItem("orderConfirm")).contact.city;
+	const orderConfirm = JSON.parse(localStorage.getItem("orderConfirm"));
+
+	const orderId = orderConfirm.orderId;
+	const fullName = orderConfirm.contact.firstName +" "+orderConfirm.contact.lastName;
+	const fullAddress = orderConfirm.contact.address +" "+orderConfirm.contact.city;
 
 
 	const messageZone = document.getElementById("main");
