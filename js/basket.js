@@ -15,7 +15,6 @@ if (isBasketEmpty || !basketExist) {
 	document.getElementById("listing").setAttribute("class", "d-none");
 	document.getElementById("form").setAttribute("class", "d-none");
 
-
 } else {
 	// normal behaviour with at least 1 article
 	document.getElementById("sadMessage").setAttribute("class", "d-none");
@@ -42,37 +41,53 @@ if (isBasketEmpty || !basketExist) {
 	//update price sum
 	const priceP = document.getElementById("priceP");
 	priceP.textContent = basket.data.totalPrice/100+" €";
+
+	// erase wrong input alerts
+	clearWrong();
 }
 
 
-function sendOrder(currentBasket){
+function sendOrder(){
+	// erase wrong input alerts
+	clearWrong();
+
 	// get inputs values :
-	let firstName = document.getElementById("inputFirstName").value;
-	let lastName = document.getElementById("inputLastName").value;
-	let email = document.getElementById("inputEmail").value;
-	let address = document.getElementById("inputAddress").value;
-	let city = document.getElementById("inputCity").value;
+	let firstName	= document.getElementById("inputFirstName");
+	let lastName	= document.getElementById("inputLastName");
+	let email		= document.getElementById("inputEmail");
+	let address		= document.getElementById("inputAddress");
+	let city		= document.getElementById("inputCity");
 
-	// check if inputs are all valid
+	// check if inputs are all valid from bottom to top and set focus
 	let validInputs = true ;
-	if (!isOnlyText(firstName)) {
-		alert("Attention le prénom ne doit comporter que des lettres, tiret ou apostrophe.");
+
+	if (!isValidEmail(email.value)) {
 		validInputs = false;
-	}
-	if (!isOnlyText(lastName)) {
-		alert("Attention le nom ne doit comporter que des lettres, tiret ou apostrophe.");
-		validInputs = false;
-	}
-	// address is not tested
-	if (!isOnlyText(city)) {
-		alert("Attention la ville ne doit comporter que des lettres, tiret ou apostrophe.");
-		validInputs = false;
+		email.parentElement.appendChild(wrongEmail());
+		email.focus();
 	}
 
-	if (!isValidEmail(email)) {
-		alert("Attention format d'eamil non valide.");
+	if (!isOnlyText(city.value)) {
 		validInputs = false;
+		city.parentElement.appendChild(wrongInput("la ville"));
+		city.focus();
 	}
+
+	// address is not tested
+
+	if (!isOnlyText(lastName.value)) {
+		validInputs = false;
+		lastName.parentElement.appendChild(wrongInput("le nom"));
+		lastName.focus();
+	}
+
+	if (!isOnlyText(firstName.value)) {
+		validInputs = false;
+		firstName.parentElement.appendChild(wrongInput("le prénom"));
+		firstName.setAttribute("valid", "false")
+		firstName.focus();
+	}
+
 	
 	if (validInputs) {
 		// if ok prepare list of articles
@@ -83,8 +98,8 @@ function sendOrder(currentBasket){
 
 		// then prepare object "order"
 		// constructor(firstName, lastName, address, city, email, listOfArticles)
-		const contact = new Contact(firstName, lastName, address, city, email);
-		const order = new Order(contact, listOfArticles);
+		const contact	= new Contact(firstName.value, lastName.value, address.value, city.value, email.value);
+		const order		= new Order(contact, listOfArticles);
 
 		let orderJson = JSON.stringify(order);
 
@@ -104,30 +119,16 @@ function postToServer(order) {
 
 
 	fetchApiWithOrder
-		.then( returnedResponse => {
-			returnedResponse.json()
-				.then( object => {
+		.then( response => { return response.json()})
+		.then( object => {
+			// empty localStorage and put orderConfirm Object in
+			localStorage.clear();
+			localStorage.setItem("orderConfirm",JSON.stringify(object));
 
-					// empty localStorage and put orderConfirm Object in
-					localStorage.clear();
-					localStorage.setItem("orderConfirm",JSON.stringify(object));
-
-					// jump to orderconfirm.html
-					window.location = `http://localhost:${port}/pages/orderconfirm.html`
-
-				})
-				.catch( returnedError => {
-					// deal with “returnedError”
-					console.log("2/ "+returnedError);
-					alertMessage(returnedError);
-				} );
-		} )
-		.catch( returnedError => {
-			// deal with “returnedError”
-			console.log("1/ "+returnedError);
-			alertMessage(returnedError);
-		} );
-
+			// jump to orderconfirm.html
+			window.location = `http://localhost:${port}/pages/orderconfirm.html`
+		})
+		.catch( error => { alertMessage(error) });
 }
 
 function alertMessage(message){

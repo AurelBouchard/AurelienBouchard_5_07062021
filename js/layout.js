@@ -59,7 +59,7 @@ const asideLink = (miniCard) => {
     newDiv.appendChild(linkToPicture);
 
     return newDiv;
-};
+}
 
 function updateArticle(article) {
     let linkToPicture = document.getElementById("linkToPicture");
@@ -101,7 +101,7 @@ function updateArticle(article) {
 
 // BASKET.JS and BASKET.HTML :
 
-const addNewLineInListing = (index) => {
+const addNewLineInListing = index => {
 
     let newLine = document.createElement("div");
     let hasNext = basket.articles[index+1] !== null;
@@ -145,8 +145,6 @@ const addNewLineInListing = (index) => {
         refresh();} );
 
 
-
-
     newLine.appendChild(colTitreOption);
     newLine.appendChild(colPrice);
     newLine.appendChild(colQuantity);
@@ -157,5 +155,25 @@ const addNewLineInListing = (index) => {
     rowMinus.appendChild(minusBtn);
 
     return newLine;
+}
 
-};
+const wrongInput = field => {
+    let p = document.createElement("p");
+    p.setAttribute("class", "w-100 alert alert-warning");
+    p.setAttribute("role", "alert");
+    p.textContent = "Attention "+field+" ne doit comporter que des lettres, tiret ou apostrophe.";
+    return p}
+
+const wrongEmail = () => {
+    let p = document.createElement("p");
+    p.setAttribute("class", "w-100 alert alert-warning");
+    p.setAttribute("role", "alert");
+    p.textContent = "Attention le format d'email n'est pas correcte.";
+    return p;
+}
+
+function clearWrong() {
+    // erase wrong input alerts
+    let wrong = document.querySelectorAll(".alert");
+    wrong.forEach(w => {w.remove()});
+}

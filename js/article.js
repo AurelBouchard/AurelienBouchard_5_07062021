@@ -1,30 +1,23 @@
 // demande d'un article à l'API : GET http://localhost:3000/api/:id
 const productId = getTheIdFromURL();
 
-const fetchMyAPI = fetch(`http://localhost:3000/api/furniture/${productId}`);
+const askForAnArticle = fetch(`http://localhost:3000/api/furniture/${productId}`);
 
 
 // affichage de l'article dans la partie centrale
-fetchMyAPI
-	.then( response => {
-		response.json()
-			.then( furniture => {
-				updateArticle(furniture);
-			});
-	} )
-	.catch( returnedError => {
-		// deal with “returnedError”
-		console.log(returnedError.json());
-	} );
+askForAnArticle
+	.then( response => { return response.json() })
+	.then( furniture => { updateArticle(furniture) })
+	.catch( error => { console.log(error.json()) });
 
 
 
 // récupération des thumbnails pour l'aside
 const asideCol = document.getElementById("aside");
 
-const fetchApiForImages = fetch(`http://localhost:3000/api/furniture`);
+const askForImages = fetch(`http://localhost:3000/api/furniture`);
 
-fetchApiForImages
+askForImages
 	.then( response => { return response.json()})
 	.then( listOfArticles => {
 		listOfArticles.forEach(furniture => { asideCol.appendChild(asideLink(furniture)) });
@@ -32,20 +25,16 @@ fetchApiForImages
 	.catch( error => {console.log(error)} );
 
 
-
-
-
-
 // ADD TO BASKET FUNCTIONS
 
 function addToBasket() {
 	// create an object "article" width id, name, varnish, price and imageUrl :
 
-	let name = document.getElementById("pTitle").textContent;
-	let varnish = document.getElementById("optionSelector").value;
-	let price = document.getElementById("pPrice").getAttribute("value")*1;
-	let imageUrl = document.getElementById("mainPicture").src;
-	let quantity = 0;
+	let name		= document.getElementById("pTitle").textContent;
+	let varnish		= document.getElementById("optionSelector").value;
+	let price		= document.getElementById("pPrice").getAttribute("value")*1;
+	let imageUrl	= document.getElementById("mainPicture").src;
+	let quantity	= 0;
 
 	const articleToBeAdded = new ArticleInBasket (productId, name, varnish, price, imageUrl, quantity);
 
@@ -86,8 +75,8 @@ function addToBasket() {
 		localStorage.setItem("basket", JSON.stringify(basket));
 	}
 
-	console.log("finaly")
-	console.log(localStorage.getItem("basket"));
+	//console.log("finaly")
+	//console.log(localStorage.getItem("basket"));
 }
 
 
