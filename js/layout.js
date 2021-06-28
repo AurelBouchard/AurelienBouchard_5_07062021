@@ -70,34 +70,46 @@ const addNewLineInListing = (index) => {
         // different border-bottom if no line after
         newLine.setAttribute("class","row border-bottom border-dark mr-3");
 
-    let article = document.createElement("p");
-    article.setAttribute("class","mb-2 mt-4");
+    let lineStyle = "col pl-0 mb-2 mt-4 col-auto";
 
-    // control
-    //console.log(JSON.parse(localStorage.getItem(`article${index}`)));
+    let colTitreOption = document.createElement("div");
+    colTitreOption.setAttribute("class", lineStyle);
+    colTitreOption.textContent = basket.articles[index].title+", couleur du vernis : "+basket.articles[index].varnish;
 
-    let spanTitre = document.createElement("span");
-    spanTitre.textContent = basket.articles[index].title;
+    let colPrice = document.createElement("div");
+    colPrice.setAttribute("class",lineStyle);
+    colPrice.textContent = basket.articles[index].price/100+" €";
 
-    let spanOption = document.createElement("span");
-    spanOption.textContent = ", couleur du vernis : "+basket.articles[index].varnish;
+    let colQuantity = document.createElement("div");
+    colQuantity.setAttribute("class",lineStyle);
+    colQuantity.textContent = "x "+basket.articles[index].quantity;
 
-    let spanPrice = document.createElement("span");
-    spanPrice.setAttribute("class","d-inline-block float-right");
-    spanPrice.textContent = basket.articles[index].price/100+" €";
+    let colBtn = document.createElement("div");
+    colBtn.setAttribute("class","col p-3");
 
-    //updateSum(JSON.parse(localStorage.getItem(`article${index}`)).price/100, "plus");
-    //listOfArticles.push(JSON.parse(localStorage.getItem(`article${index}`)).id);
+    let rowPlus = document.createElement("div");
+    rowPlus.setAttribute("class","row");
+    let plusBtn = document.createElement("i");
+    plusBtn.setAttribute("class","far fa-plus-square ml-auto");
+    plusBtn.addEventListener("click", basket.updateQuantityUp(index));
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    // introduction d'une erreur qui n'est pas "catch" dans la promesse
-    //listOfArticles.push(JSON.parse(localStorage.getItem(`orinoco${index}`)).title);
+    let rowMinus = document.createElement("div");
+    rowMinus.setAttribute("class","row");
+    let minusBtn = document.createElement("i");
+    minusBtn.setAttribute("class","far fa-minus-square ml-auto");
+    plusBtn.addEventListener("click", basket.updateQuantityDown(index));
 
 
-    newLine.appendChild(article);
-    article.appendChild(spanTitre);
-    article.appendChild(spanOption);
-    article.appendChild(spanPrice);
+
+
+    newLine.appendChild(colTitreOption);
+    newLine.appendChild(colPrice);
+    newLine.appendChild(colQuantity);
+    newLine.appendChild(colBtn);
+    colBtn.appendChild(rowPlus);
+    rowPlus.appendChild(plusBtn);
+    colBtn.appendChild(rowMinus);
+    rowMinus.appendChild(minusBtn);
 
     return newLine;
 

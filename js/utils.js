@@ -8,6 +8,7 @@ function createBasketInLocalStorage() {
         }
     }
     localStorage.setItem("basket", JSON.stringify(emptyBasket));
+
     console.log(localStorage.getItem("basket"));
 }
 

@@ -47,12 +47,12 @@ if (isBasketEmpty || !basketExist) {
 function clearLocalStorageThenRefresh() {
 	localStorage.clear();
 	refresh();
-};
+}
 
 function refresh() {
 	console.log("refresh after 1s");
 	setTimeout(function() {document.location.reload()},1000);
-};
+}
 
 
 
@@ -98,14 +98,14 @@ function sendOrder(){
 
 	postToServer(orderJson);
 	};
-};
+}
 
 function isOnlyText(text) {
 	// pattern is ^[a-zA-Z\-'\ ]{1,40}$
-	const pattern = /^[a-zA-Z\-'éèêö\ ]{1,40}$/;
+	const pattern = /^[a-zA-Z\-'éèêö ]{1,40}$/;
 
 	return pattern.test(text);
-};
+}
 
 function isValidEmail(email) {
 	// pattern is : ^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$
@@ -113,7 +113,7 @@ function isValidEmail(email) {
 	email = String(email).toLowerCase();
 
 	return pattern.test(email);
-};
+}
 
 function postToServer(order) {
 	console.log(order);
@@ -140,8 +140,7 @@ function postToServer(order) {
 					localStorage.setItem("orderConfirm",JSON.stringify(object));
 
 					// jump to orderconfirm.html
-					//setTimeout(function() {},20000);
-						window.location = `http://localhost:${port}/pages/orderconfirm.html`
+					window.location = `http://localhost:${port}/pages/orderconfirm.html`
 					
 
 					
@@ -158,9 +157,9 @@ function postToServer(order) {
 			alertMessage(returnedError);
 		} );
 
-};
+}
 
 function alertMessage(message){
 	alert("Une erreur s'est produite. Détails : "+message);
 // N'EST JAMAIS APPELLEE ............................................ ?????????????????????????????????????
-};
+}

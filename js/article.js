@@ -88,7 +88,7 @@ function addToBasket() {
 				articleExistInBasket = true;
 /*				console.log("boucle try : if");*/
 
-				updateQuantityUp(basket, index);
+				basket.updateQuantityUp(index);
 				localStorage.setItem("basket", JSON.stringify(basket));
 			}
 		}

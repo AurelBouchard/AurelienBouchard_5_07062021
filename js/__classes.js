@@ -9,7 +9,7 @@ class ArticleInBasket {
 		this.imageUrl	= imageUrl;
 		this.quantity	= quantity;
 	}
-};
+}
 
 
 
@@ -21,7 +21,7 @@ class Contact {
 		this.city		= city;
 		this.email		= email;
 	};
-};
+}
 
 
 class Order {
