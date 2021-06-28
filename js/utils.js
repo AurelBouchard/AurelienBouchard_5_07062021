@@ -1,3 +1,7 @@
+function getTheIdFromURL() {
+    return (new URLSearchParams(document.location.search.substring(1))).get("id");
+}
+
 function refresh() {
     console.log("refresh after 80ms");
     setTimeout(function() {document.location.reload()},80);

@@ -25,21 +25,14 @@ const asideCol = document.getElementById("aside");
 const fetchApiForImages = fetch(`http://localhost:3000/api/furniture`);
 
 fetchApiForImages
-	.then( response => {
-		response.json()
-			.then( listOfArticles => {
-				listOfArticles.forEach(furniture => {
-					asideCol.appendChild(asideLink(furniture));
-				});
-			});
-	} )
-	.catch( error => {
-		console.log(error);
-	} );
+	.then( response => { return response.json()})
+	.then( listOfArticles => {
+		listOfArticles.forEach(furniture => { asideCol.appendChild(asideLink(furniture)) });
+	})
+	.catch( error => {console.log(error)} );
 
-function getTheIdFromURL() {
-	return (new URLSearchParams(document.location.search.substring(1))).get("id");
-}
+
+
 
 
 
