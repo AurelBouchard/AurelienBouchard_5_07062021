@@ -4,7 +4,7 @@ const basketExist = !(basket == null);
 let isBasketEmpty = true;
 
 try {
-	isBasketEmpty = basket.articles.length === 0;
+	isBasketEmpty = basket.data.nOfArticles === 0;
 } catch (e) {}
 
 
@@ -22,7 +22,6 @@ if (isBasketEmpty || !basketExist) {
 	// normal behaviour with at least 1 article
 	document.getElementById("sadMessage").setAttribute("class", "d-none");
 
-	const priceP = document.getElementById("priceP");
 	const listing = document.getElementById("listing");
 
 	const emptyBasketBtn = document.getElementById("emptyBasket");
@@ -34,11 +33,17 @@ if (isBasketEmpty || !basketExist) {
 	validationBtn2.addEventListener("click", sendOrder);
 
 	for ( let i in basket.articles) {
-		listing.appendChild(addNewLineInListing(i));
+		if (basket.articles[i].quantity > 0) {
+			listing.appendChild(addNewLineInListing(i));
+		}
 	}
 
 	// relocate emptyBasketBtn after list of articles
 	listing.insertAdjacentElement("beforeend", emptyBasketBtn);
+
+	//update price sum
+	const priceP = document.getElementById("priceP");
+	priceP.textContent = basket.data.totalPrice/100+" €";
 }
 
 
@@ -51,7 +56,7 @@ function clearLocalStorageThenRefresh() {
 
 function refresh() {
 	console.log("refresh after 1s");
-	setTimeout(function() {document.location.reload()},1000);
+	setTimeout(function() {document.location.reload()},80);
 }
 
 
@@ -92,12 +97,12 @@ function sendOrder(){
 	// then prepare object "order"
 	// constructor(firstName, lastName, address, city, email, listOfArticles)
 	const contact = new Contact(firstName, lastName, address, city, email);
-	const order = new Order(contact, listOfArticles);
+	const order = new Order(contact, basket.articles);
 
 	let orderJson = JSON.stringify(order);
 
 	postToServer(orderJson);
-	};
+	}
 }
 
 function isOnlyText(text) {

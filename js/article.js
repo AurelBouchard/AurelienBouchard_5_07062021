@@ -68,27 +68,17 @@ function addToBasket() {
 	if (!hasBasket) createBasketInLocalStorage();
 
 	let basket = JSON.parse(localStorage.getItem("basket"));
-/*	console.log("basket is :");
-	console.log(basket);
-	console.log("basket.articles is :");
-	console.log(basket.articles);*/
 
 	let articleExistInBasket = false;
 
 	// check for an existing IDENTICAL article in basket only if basket is not empty
 	if (basket.articles.length>0) {
 		for (let index in basket.articles) {
-/*			console.log("checking basket.articles at index "+index)
-			console.log("boucle for");
-
-			console.log(basket.articles[index].id+" // "+articleToBeAdded.id);
-			console.log(basket.articles[index].varnish+" // "+articleToBeAdded.varnish);*/
 
 			if ((basket.articles[index].id === articleToBeAdded.id) && (basket.articles[index].varnish === articleToBeAdded.varnish)) {
 				articleExistInBasket = true;
-/*				console.log("boucle try : if");*/
 
-				basket.updateQuantityUp(index);
+				updateQuantityUp(basket, index);
 				localStorage.setItem("basket", JSON.stringify(basket));
 			}
 		}
@@ -96,7 +86,10 @@ function addToBasket() {
 
 	if (!articleExistInBasket) {
 		// if basket is empty OR no existing identical article : add new article
-		addNewArticleInBasket(basket, articleToBeAdded, basket.articles.length);
+
+		basket.articles.push(articleToBeAdded);
+		updateQuantityUp(basket, basket.articles.length-1);
+
 		localStorage.setItem("basket", JSON.stringify(basket));
 	}
 
@@ -104,10 +97,4 @@ function addToBasket() {
 	console.log(localStorage.getItem("basket"));
 }
 
-
-function addNewArticleInBasket(currentBasket, articleToBeAdded, index) {
-	currentBasket.articles.push(articleToBeAdded);
-	// then update quantity
-	updateQuantityUp(currentBasket, index);
-}
 

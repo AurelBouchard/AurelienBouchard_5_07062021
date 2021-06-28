@@ -13,6 +13,8 @@ function createBasketInLocalStorage() {
 }
 
 function updateQuantityUp(currentBasket, indexInArticles) {
+    console.log(currentBasket);
+    console.log(indexInArticles);
     // update quantities
     currentBasket.articles[indexInArticles].quantity++;
     currentBasket.data.nOfArticles++;
@@ -23,6 +25,8 @@ function updateQuantityUp(currentBasket, indexInArticles) {
 }
 
 function updateQuantityDown(currentBasket, indexInArticles) {
+    // remove 1 article if articles[] is not empty
+    if (currentBasket.articles[indexInArticles].quantity === 0) {return}
     // update quantities
     currentBasket.articles[indexInArticles].quantity--;
     currentBasket.data.nOfArticles--;
@@ -31,3 +35,4 @@ function updateQuantityDown(currentBasket, indexInArticles) {
     console.log("new total price :");
     console.log(currentBasket.data.totalPrice);
 }
+

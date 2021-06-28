@@ -91,13 +91,19 @@ const addNewLineInListing = (index) => {
     rowPlus.setAttribute("class","row");
     let plusBtn = document.createElement("i");
     plusBtn.setAttribute("class","far fa-plus-square ml-auto");
-    plusBtn.addEventListener("click", basket.updateQuantityUp(index));
+    plusBtn.addEventListener("click", function() {
+        updateQuantityUp(basket, index);
+        localStorage.setItem("basket", JSON.stringify(basket));
+        refresh();} );
 
     let rowMinus = document.createElement("div");
     rowMinus.setAttribute("class","row");
     let minusBtn = document.createElement("i");
     minusBtn.setAttribute("class","far fa-minus-square ml-auto");
-    plusBtn.addEventListener("click", basket.updateQuantityDown(index));
+    minusBtn.addEventListener("click", function() {
+        updateQuantityDown(basket, index);
+        localStorage.setItem("basket", JSON.stringify(basket));
+        refresh();} );
 
 
 
