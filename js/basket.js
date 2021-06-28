@@ -8,8 +8,6 @@ try {
 } catch (e) {}
 
 
-
-
 if (isBasketEmpty || !basketExist) {
 	// special display if basket is empty
 
@@ -45,20 +43,6 @@ if (isBasketEmpty || !basketExist) {
 	const priceP = document.getElementById("priceP");
 	priceP.textContent = basket.data.totalPrice/100+" €";
 }
-
-
-
-
-function clearLocalStorageThenRefresh() {
-	localStorage.clear();
-	refresh();
-}
-
-function refresh() {
-	console.log("refresh after 80ms");
-	setTimeout(function() {document.location.reload()},80);
-}
-
 
 
 function sendOrder(currentBasket){
@@ -108,21 +92,6 @@ function sendOrder(currentBasket){
 	}
 }
 
-function isOnlyText(text) {
-	// pattern is ^[a-zA-Z\-'\ ]{1,40}$
-	const pattern = /^[a-zA-Z\-'éèêö ]{1,40}$/;
-
-	return pattern.test(text);
-}
-
-function isValidEmail(email) {
-	// pattern is : ^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$
-	const pattern = /^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$/;
-	email = String(email).toLowerCase();
-
-	return pattern.test(email);
-}
-
 function postToServer(order) {
 
 	const fetchApiWithOrder = fetch(`http://localhost:3000/api/furniture/order`,{
@@ -138,9 +107,7 @@ function postToServer(order) {
 		.then( returnedResponse => {
 			returnedResponse.json()
 				.then( object => {
-					console.log("youhou !!");
-					console.log(object);
-					
+
 					// empty localStorage and put orderConfirm Object in
 					localStorage.clear();
 					localStorage.setItem("orderConfirm",JSON.stringify(object));

@@ -1,3 +1,8 @@
+function refresh() {
+    console.log("refresh after 80ms");
+    setTimeout(function() {document.location.reload()},80);
+}
+
 function createBasketInLocalStorage() {
     console.log("createBasketInLocalStorage");
     const emptyBasket = {
@@ -10,6 +15,11 @@ function createBasketInLocalStorage() {
     localStorage.setItem("basket", JSON.stringify(emptyBasket));
 
     console.log(localStorage.getItem("basket"));
+}
+
+function clearLocalStorageThenRefresh() {
+    localStorage.clear();
+    refresh();
 }
 
 function updateQuantityUp(currentBasket, indexInArticles) {
@@ -35,4 +45,22 @@ function updateQuantityDown(currentBasket, indexInArticles) {
     console.log("new total price :");
     console.log(currentBasket.data.totalPrice);
 }
+
+function isOnlyText(text) {
+    // pattern is ^[a-zA-Z\-'\ ]{1,40}$
+    const pattern = /^[a-zA-Z\-'éèêö ]{1,40}$/;
+
+    return pattern.test(text);
+}
+
+function isValidEmail(email) {
+    // pattern is : ^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$
+    const pattern = /^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$/;
+    email = String(email).toLowerCase();
+
+    return pattern.test(email);
+}
+
+
+
 
