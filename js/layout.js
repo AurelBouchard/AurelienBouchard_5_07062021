@@ -1,4 +1,4 @@
-// HOME.JS and HOME.HTML
+// HOME.HTML
 
 const createCard = (furniture) => {
     let newDiv = document.createElement("div");
@@ -10,7 +10,7 @@ const createCard = (furniture) => {
     cardLink.setAttribute("class", "text-decoration-none");
 
     let cardDiv =  document.createElement("div");
-    cardDiv.setAttribute("class", "card furniture mb-5");
+    cardDiv.setAttribute("class", "card furniture mb-5 shadow");
 
     let cardImg = document.createElement("img");
     cardImg.setAttribute("src",`${furniture.imageUrl}`)
@@ -39,7 +39,7 @@ const createCard = (furniture) => {
 }
 
 
-// ARTICLE.JS and ARTICLE.HTML :
+// ARTICLE.HTML :
 
 const asideLink = (miniCard) => {
     let newDiv = document.createElement("div");
@@ -99,7 +99,7 @@ function updateArticle(article) {
 }
 
 
-// BASKET.JS and BASKET.HTML :
+// BASKET.HTML :
 
 const addNewLineInListing = index => {
 
