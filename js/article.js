@@ -28,20 +28,8 @@ askForImages
 // ADD TO BASKET FUNCTIONS
 
 function addToBasket() {
-	// create an object "article" width id, name, varnish, price and imageUrl :
-
-	let name		= document.getElementById("pTitle").textContent;
-	let varnish		= document.getElementById("optionSelector").value;
-	let price		= document.getElementById("pPrice").getAttribute("value")*1;
-	let imageUrl	= document.getElementById("mainPicture").src;
-	let quantity	= 0;
-
-	const articleToBeAdded = new ArticleInBasket (productId, name, varnish, price, imageUrl, quantity);
-
-		// IL FAUT VERIFIER LA PRESENCE D'UN OBJET BASKET
-		// SI ABSENT CREER, PUIS
-		// VERIFIER LA PRESENCE D'UN OBJET IDENTIQUE
-		// AJOUTER L'OBJET : SOIT EN AUGMENTANT LA Q SOIT EN EN CREANT UN NOUVEL OBJET
+	// create an article upon DOM.element values
+	const articleToBeAdded = createArticle();
 
 	// check if basket object exists in localStorage
 	const hasBasket = localStorage.getItem("basket") !== null;
@@ -79,4 +67,13 @@ function addToBasket() {
 	//console.log(localStorage.getItem("basket"));
 }
 
+function createArticle() {
+	// create an object "article" width id, name, varnish, price and imageUrl :
+	let name		= document.getElementById("pTitle").textContent;
+	let varnish		= document.getElementById("optionSelector").value;
+	let price		= document.getElementById("pPrice").getAttribute("value")*1;
+	let imageUrl	= document.getElementById("mainPicture").src;
+	let quantity	= 0;
 
+	return new ArticleInBasket (productId, name, varnish, price, imageUrl, quantity);
+}
