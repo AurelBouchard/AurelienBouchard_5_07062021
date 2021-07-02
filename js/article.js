@@ -1,3 +1,7 @@
+import {asideLink, updateArticle} from "./layoutArticle.js";
+import {getTheIdFromURL, createBasketInLocalStorage, updateQuantityUp} from "./utils.js";
+import {ArticleInBasket} from "./__classes.js";
+
 // demande d'un article à l'API : GET http://localhost:3000/api/:id
 const productId = getTheIdFromURL();
 
@@ -8,7 +12,7 @@ const askForAnArticle = fetch(`http://localhost:3000/api/furniture/${productId}`
 askForAnArticle
 	.then( response => { return response.json() })
 	.then( furniture => { updateArticle(furniture) })
-	.catch( error => { console.log(error.json()) });
+	.catch( error => { console.log(error) });
 
 
 
@@ -27,7 +31,7 @@ askForImages
 
 // ADD TO BASKET FUNCTIONS
 
-function addToBasket() {
+export function addToBasket() {
 	// create an article upon DOM.element values
 	const articleToBeAdded = createArticle();
 
@@ -63,7 +67,7 @@ function addToBasket() {
 		localStorage.setItem("basket", JSON.stringify(basket));
 	}
 
-	//console.log("finaly")
+	//console.log("finally")
 	//console.log(localStorage.getItem("basket"));
 }
 

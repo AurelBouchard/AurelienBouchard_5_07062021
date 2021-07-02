@@ -1,13 +1,13 @@
-function getTheIdFromURL() {
+export function getTheIdFromURL() {
     return (new URLSearchParams(document.location.search.substring(1))).get("id");
 }
 
-function refresh() {
+export function refresh() {
     //console.log("refresh after 80ms");
     setTimeout(function() {document.location.reload()},80);
 }
 
-function createBasketInLocalStorage() {
+export function createBasketInLocalStorage() {
     //console.log("createBasketInLocalStorage");
     const emptyBasket = {
         articles : [],
@@ -19,12 +19,12 @@ function createBasketInLocalStorage() {
     localStorage.setItem("basket", JSON.stringify(emptyBasket));
 }
 
-function clearLocalStorageThenRefresh() {
+export function clearLocalStorageThenRefresh() {
     localStorage.clear();
     refresh();
 }
 
-function updateQuantityUp(currentBasket, indexInArticles) {
+export function updateQuantityUp(currentBasket, indexInArticles) {
     console.log(currentBasket);
     console.log(indexInArticles);
     // update quantities
@@ -34,7 +34,7 @@ function updateQuantityUp(currentBasket, indexInArticles) {
     currentBasket.data.totalPrice += currentBasket.articles[indexInArticles].price;
 }
 
-function updateQuantityDown(currentBasket, indexInArticles) {
+export function updateQuantityDown(currentBasket, indexInArticles) {
     // remove 1 article if articles[] is not empty
     if (currentBasket.articles[indexInArticles].quantity === 0) {return}
     // update quantities
@@ -44,13 +44,13 @@ function updateQuantityDown(currentBasket, indexInArticles) {
     currentBasket.data.totalPrice -= currentBasket.articles[indexInArticles].price;
 }
 
-function isOnlyText(text) {
+export function isOnlyText(text) {
     // pattern is ^[a-zA-Z\-'éèêö ]{1,40}$
     const pattern = /^[a-zA-Z\-'éèêö ]{1,40}$/;
     return pattern.test(text);
 }
 
-function isValidEmail(email) {
+export function isValidEmail(email) {
     // pattern is : ^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$
     const pattern = /^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$/;
     email = String(email).toLowerCase();

@@ -1,3 +1,9 @@
+import {addNewLineInListing, wrongInput, wrongEmail, clearWrong} from "./layoutBasket.js";
+import {clearLocalStorageThenRefresh, isValidEmail, isOnlyText} from "./utils.js";
+import {Order, Contact} from "./__classes.js";
+import {port} from "./__config.js";
+
+
 // check if basket exist and not empty
 const basket = JSON.parse(localStorage.getItem("basket"));
 const basketExist = !(basket == null);
@@ -31,7 +37,7 @@ if (isBasketEmpty || !basketExist) {
 
 	for ( let i in basket.articles) {
 		if (basket.articles[i].quantity > 0) {
-			listing.appendChild(addNewLineInListing(i));
+			listing.appendChild(addNewLineInListing(basket, i));
 		}
 	}
 
@@ -101,9 +107,7 @@ function sendOrder(){
 		const contact	= new Contact(firstName.value, lastName.value, address.value, city.value, email.value);
 		const order		= new Order(contact, listOfArticles);
 
-		let orderJson = JSON.stringify(order);
-
-		postToServer(orderJson);
+		postToServer(order);
 	}
 }
 
@@ -114,7 +118,7 @@ function postToServer(order) {
 		headers:{
 			"Content-Type": "application/json"
 		},
-		body: order
+		body: JSON.stringify(order)
 	});
 
 

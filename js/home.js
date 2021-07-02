@@ -1,4 +1,4 @@
-//import {createCard} from "./templates";
+import {createCard} from "./layoutHome.js";
 
 // AFFICHAGE DES ARTICLES MEUBLEs
 const panel = document.getElementById("panel");
@@ -16,8 +16,5 @@ getFurnitures
 		})
 	})
 	.catch( error => { console.log(error) });
-
-
-//export {};
 
 

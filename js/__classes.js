@@ -1,6 +1,6 @@
 // common classes used by several js
 
-class ArticleInBasket {
+export class ArticleInBasket {
 	constructor(id, title, varnish, price, imageUrl, quantity){
 		this.id			= id;
 		this.title		= title;
@@ -13,7 +13,7 @@ class ArticleInBasket {
 
 
 
-class Contact {
+export class Contact {
 	constructor(firstName, lastName, address, city, email) {
 		this.firstName	= firstName;
 		this.lastName	= lastName;
@@ -24,7 +24,7 @@ class Contact {
 }
 
 
-class Order {
+export class Order {
 	constructor(contact, products) {
 		this.contact	= contact;
 		this.products	= products;

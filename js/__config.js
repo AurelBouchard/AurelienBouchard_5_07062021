@@ -1,7 +1,7 @@
 // CONFIG FILE
 
 // vscode live server port
-//const port = 5500;
+//export const port = 5500;
 
 // browsersync server port
-const port = 3001;
+export const port = 3001;

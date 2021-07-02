@@ -1,3 +1,5 @@
+import {port} from "./__config.js";
+
 // if user come with no confirmOrder object in local storage => home.html
 const isNoOrderConfirm = localStorage.getItem("orderConfirm") == null;
 
@@ -27,4 +29,4 @@ function createContent() {
 	messageZone.appendChild(messageLine3);
 
 	setTimeout(function() {localStorage.clear()}, 500);
-};
+}
