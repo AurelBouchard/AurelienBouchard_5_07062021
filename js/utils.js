@@ -3,7 +3,6 @@ export function getTheIdFromURL() {
 }
 
 export function refresh() {
-    //console.log("refresh after 80ms");
     setTimeout(function() {document.location.reload()},0);
 }
 

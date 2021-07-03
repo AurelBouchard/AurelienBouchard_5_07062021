@@ -97,10 +97,7 @@ function sendOrder(){
 	
 	if (validInputs) {
 		// if ok prepare list of articles
-		const listOfArticles = [];
-		for (let each of basket.articles) {
-			listOfArticles.push(each._id);
-		}
+		const listOfArticles = basket.articles.map(articles => articles._id);
 
 		// then prepare object "order"
 		// constructor(firstName, lastName, address, city, email, listOfArticles)
