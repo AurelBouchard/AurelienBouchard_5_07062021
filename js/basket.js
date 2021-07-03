@@ -99,7 +99,7 @@ function sendOrder(){
 		// if ok prepare list of articles
 		const listOfArticles = [];
 		for (let each of basket.articles) {
-			listOfArticles.push(each.id);
+			listOfArticles.push(each._id);
 		}
 
 		// then prepare object "order"

@@ -1,16 +1,15 @@
 // common classes used by several js
 
-export class ArticleInBasket {
-	constructor(id, title, varnish, price, imageUrl, quantity){
-		this.id			= id;
-		this.title		= title;
-		this.varnish	= varnish;
+export class Article {
+	// _id & name must be "_id" & "name" !! (same naming as backend object)
+	constructor(_id, name, selectedOption, price, quantity){
+		this._id		= _id;
+		this.name		= name;
+		this.selectedOption = selectedOption;
 		this.price		= price;
-		this.imageUrl	= imageUrl;
 		this.quantity	= quantity;
 	}
 }
-
 
 
 export class Contact {

@@ -14,7 +14,7 @@ export const addNewLineInListing = (basket, index) => {
 
     let colTitreOption = document.createElement("div");
     colTitreOption.setAttribute("class", lineStyle);
-    colTitreOption.textContent = basket.articles[index].title+", couleur du vernis : "+basket.articles[index].varnish;
+    colTitreOption.textContent = basket.articles[index].name+", couleur du vernis : "+basket.articles[index].selectedOption;
 
     let colPrice = document.createElement("div");
     colPrice.setAttribute("class",lineStyle);

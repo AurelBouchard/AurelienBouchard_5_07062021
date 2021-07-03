@@ -4,7 +4,7 @@ export function getTheIdFromURL() {
 
 export function refresh() {
     //console.log("refresh after 80ms");
-    setTimeout(function() {document.location.reload()},80);
+    setTimeout(function() {document.location.reload()},0);
 }
 
 export function createBasketInLocalStorage() {
@@ -25,8 +25,6 @@ export function clearLocalStorageThenRefresh() {
 }
 
 export function updateQuantityUp(currentBasket, indexInArticles) {
-    console.log(currentBasket);
-    console.log(indexInArticles);
     // update quantities
     currentBasket.articles[indexInArticles].quantity++;
     currentBasket.data.nOfArticles++;

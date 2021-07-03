@@ -1,6 +1,6 @@
 // ARTICLE.HTML :
 
-import {addToBasket} from "./article.js";
+import {addToBasket, modifyCurrentOption} from "./article.js";
 
 export const asideLink = (miniCard) => {
     let newDiv = document.createElement("div");
@@ -22,32 +22,36 @@ export const asideLink = (miniCard) => {
     return newDiv;
 }
 
-export function updateArticle(article) {
+export function updatePageArticle(furniture) {
     let linkToPicture = document.getElementById("linkToPicture");
-    linkToPicture.setAttribute("href", `${article.imageUrl}`);
+    linkToPicture.setAttribute("href", `${furniture.imageUrl}`);
 
     let mainPicture = document.getElementById("mainPicture");
-    mainPicture.setAttribute("src",`${article.imageUrl}`);
-    mainPicture.setAttribute("alt",`meuble ${article.name}`);
+    mainPicture.setAttribute("src",`${furniture.imageUrl}`);
+    mainPicture.setAttribute("alt",`meuble ${furniture.name}`);
 
     let pTitle = document.getElementById("pTitle");
-    pTitle.textContent = `${article.name}`;
+    pTitle.textContent = `${furniture.name}`;
 
     let pPrice = document.getElementById("pPrice");
-    pPrice.setAttribute("value", `${article.price}`);
-    pPrice.textContent = `${article.price/100} €`;
+    pPrice.setAttribute("value", `${furniture.price}`);
+    pPrice.textContent = `${furniture.price/100} €`;
 
     let firstOption = document.createElement("option");
     firstOption.setAttribute("selected", "true");
-    firstOption.textContent = `${article.varnish[0]}`;
+    firstOption.textContent = `${furniture.varnish[0]}`;
+    firstOption.addEventListener("click", () => {
+        modifyCurrentOption(furniture.varnish[0])});
 
     let optionSelector = document.getElementById("optionSelector");
     optionSelector.appendChild(firstOption);
 
     // // if more than 1 option :
-    for (let i =1; i < article.varnish.length; i++ ) {
+    for (let i =1; i < furniture.varnish.length; i++ ) {
         let nextOption = document.createElement("option");
-        nextOption.textContent = `${article.varnish[i]}`;
+        nextOption.textContent = `${furniture.varnish[i]}`;
+        nextOption.addEventListener("click", () => {
+            modifyCurrentOption(furniture.varnish[i])});
 
         optionSelector.appendChild(nextOption);
     }
@@ -56,5 +60,5 @@ export function updateArticle(article) {
     btnAddToBasket.addEventListener("click", addToBasket);
 
     let pDescription = document.getElementById("pDescription");
-    pDescription.textContent = `${article.description}`;
+    pDescription.textContent = `${furniture.description}`;
 }

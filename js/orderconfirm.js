@@ -22,7 +22,7 @@ function createContent() {
 
 	messageLine1.textContent = `Félicitation ${fullName}, votre commande est validée.`;
 	messageLine2.textContent = `Elle porte le numero ${orderId}.`;
-	messageLine3.textContent = `Elle vous sera livrée à l'adress : ${fullAddress}`;
+	messageLine3.textContent = `Elle vous sera livrée à l'adresse : ${fullAddress}`;
 
 	messageZone.appendChild(messageLine1);
 	messageZone.appendChild(messageLine2);

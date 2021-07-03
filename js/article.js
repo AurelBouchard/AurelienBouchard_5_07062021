@@ -1,17 +1,24 @@
-import {asideLink, updateArticle} from "./layoutArticle.js";
+import {asideLink, updatePageArticle} from "./layoutArticle.js";
 import {getTheIdFromURL, createBasketInLocalStorage, updateQuantityUp} from "./utils.js";
-import {ArticleInBasket} from "./__classes.js";
+import {Article} from "./__classes.js";
 
 // demande d'un article à l'API : GET http://localhost:3000/api/:id
 const productId = getTheIdFromURL();
+let currentArticle;
+let currentOption = "";
+
 
 const askForAnArticle = fetch(`http://localhost:3000/api/furniture/${productId}`);
-
 
 // affichage de l'article dans la partie centrale
 askForAnArticle
 	.then( response => { return response.json() })
-	.then( furniture => { updateArticle(furniture) })
+	.then( furniture => {
+		updatePageArticle(furniture);
+		// option is set to the first one regardless to "select option menu"
+		currentOption = furniture.varnish[0];
+		currentArticle = setArticle(currentOption, furniture);
+		})
 	.catch( error => { console.log(error) });
 
 
@@ -32,8 +39,11 @@ askForImages
 // ADD TO BASKET FUNCTIONS
 
 export function addToBasket() {
+	// update articleOption
+	//currentArticle.selectedOption = currentOption;
+
 	// create an article upon DOM.element values
-	const articleToBeAdded = createArticle();
+	const articleToBeAdded = setArticle(currentOption, currentArticle);
 
 	// check if basket object exists in localStorage
 	const hasBasket = localStorage.getItem("basket") !== null;
@@ -49,7 +59,7 @@ export function addToBasket() {
 	if (basket.articles.length>0) {
 		for (let index in basket.articles) {
 
-			if ((basket.articles[index].id === articleToBeAdded.id) && (basket.articles[index].varnish === articleToBeAdded.varnish)) {
+			if ((basket.articles[index]._id === articleToBeAdded._id) && (basket.articles[index].selectedOption === articleToBeAdded.selectedOption)) {
 				articleExistInBasket = true;
 
 				updateQuantityUp(basket, index);
@@ -71,13 +81,17 @@ export function addToBasket() {
 	//console.log(localStorage.getItem("basket"));
 }
 
-function createArticle() {
-	// create an object "article" width id, name, varnish, price and imageUrl :
-	let name		= document.getElementById("pTitle").textContent;
-	let varnish		= document.getElementById("optionSelector").value;
-	let price		= document.getElementById("pPrice").getAttribute("value")*1;
-	let imageUrl	= document.getElementById("mainPicture").src;
+export function setArticle(currentOption, furniture) {
+	// create an object "article" width id, name, option, price and imageUrl :
+	let _id			= furniture._id;
+	let name		= furniture.name;
+	let selectedOption		= currentOption; // must be a string
+	let price		= furniture.price;
 	let quantity	= 0;
 
-	return new ArticleInBasket (productId, name, varnish, price, imageUrl, quantity);
+	return new Article (_id, name, selectedOption, price, quantity);
+}
+
+export function modifyCurrentOption(varnish) {
+	currentOption = varnish;
 }
