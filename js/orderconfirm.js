@@ -21,7 +21,7 @@ function createContent() {
 	const messageLine3 = document.createElement("p");
 
 	messageLine1.textContent = `Félicitation ${fullName}, votre commande est validée.`;
-	messageLine2.textContent = `Elle porte le numero ${orderId}.`;
+	messageLine2.textContent = `Elle porte le numéro ${orderId}.`;
 	messageLine3.textContent = `Elle vous sera livrée à l'adresse : ${fullAddress}`;
 
 	messageZone.appendChild(messageLine1);

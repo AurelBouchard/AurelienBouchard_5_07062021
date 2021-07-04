@@ -37,6 +37,7 @@ if (isBasketEmpty || !basketExist) {
 
 	for ( let i in basket.articles) {
 		if (basket.articles[i].quantity > 0) {
+			// display each line
 			listing.appendChild(addNewLineInListing(basket, i));
 		}
 	}
@@ -44,7 +45,7 @@ if (isBasketEmpty || !basketExist) {
 	// relocate emptyBasketBtn after list of articles
 	listing.insertAdjacentElement("beforeend", emptyBasketBtn);
 
-	//update price sum
+	//update displayed sum
 	const priceP = document.getElementById("priceP");
 	priceP.textContent = basket.data.totalPrice/100+" €";
 
@@ -97,10 +98,10 @@ function sendOrder(){
 	
 	if (validInputs) {
 		// if ok prepare list of articles
-		const listOfArticles = basket.articles.map(articles => articles._id);
+		const listOfArticles = basket.articles.map(article => article._id);
 
-		// then prepare object "order"
-		// constructor(firstName, lastName, address, city, email, listOfArticles)
+		// then prepare objects "contact" and "order"
+		// constructor(firstName, lastName, address, city, email)
 		const contact	= new Contact(firstName.value, lastName.value, address.value, city.value, email.value);
 		const order		= new Order(contact, listOfArticles);
 
@@ -134,5 +135,4 @@ function postToServer(order) {
 
 function alertMessage(message){
 	alert("Une erreur s'est produite. Détails : "+message);
-// N'EST JAMAIS APPELLEE ............................................ ?????????????????????????????????????
 }

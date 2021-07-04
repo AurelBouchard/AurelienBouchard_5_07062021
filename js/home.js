@@ -1,11 +1,10 @@
 import {createCard} from "./layoutHome.js";
 
-// AFFICHAGE DES ARTICLES MEUBLEs
+// where articles will be displayed
 const panel = document.getElementById("panel");
 
 
-// demande de la liste des article à l'API : GET http://localhost:3000/api/furniture
-
+// ask for the full article list to the API
 const getFurnitures = fetch(`http://localhost:3000/api/furniture`);
 
 getFurnitures

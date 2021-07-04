@@ -32,7 +32,7 @@ export function updateQuantityUp(currentBasket, indexInArticles) {
 }
 
 export function updateQuantityDown(currentBasket, indexInArticles) {
-    // remove 1 article if articles[] is not empty
+    // remove 1 article ONLY if articles[] is not empty
     if (currentBasket.articles[indexInArticles].quantity === 0) {return}
     // update quantities
     currentBasket.articles[indexInArticles].quantity--;
@@ -42,13 +42,13 @@ export function updateQuantityDown(currentBasket, indexInArticles) {
 }
 
 export function isOnlyText(text) {
-    // pattern is ^[a-zA-Z\-'éèêö ]{1,40}$
+    // regex pattern is ^[a-zA-Z\-'éèêö ]{1,40}$
     const pattern = /^[a-zA-Z\-'éèêö ]{1,40}$/;
     return pattern.test(text);
 }
 
 export function isValidEmail(email) {
-    // pattern is : ^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$
+    // regex pattern is : ^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$
     const pattern = /^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$/;
     email = String(email).toLowerCase();
     return pattern.test(email);
