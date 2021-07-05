@@ -1,5 +1,5 @@
 import {addNewLineInListing, wrongInput, wrongEmail, clearWrong} from "./layoutBasket.js";
-import {clearLocalStorageThenRefresh, isValidEmail, isOnlyText} from "./utils.js";
+import {clearLocalStorageThenRefresh, isValidEmail, isOnlyText, alertMessage} from "./utils.js";
 import {Order, Contact} from "./__classes.js";
 import {port} from "./__config.js";
 
@@ -131,8 +131,4 @@ function postToServer(order) {
 			window.location = `http://localhost:${port}/pages/orderconfirm.html`
 		})
 		.catch( error => { alertMessage(error) });
-}
-
-function alertMessage(message){
-	alert("Une erreur s'est produite. Détails : "+message);
 }

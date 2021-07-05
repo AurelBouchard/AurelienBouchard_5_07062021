@@ -54,6 +54,10 @@ export function isValidEmail(email) {
     return pattern.test(email);
 }
 
+export function alertMessage(message){
+    alert("Une erreur s'est produite. Détails : "+message);
+}
+
 
 
 
