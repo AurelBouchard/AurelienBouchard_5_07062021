@@ -49,7 +49,10 @@ export function isOnlyText(text) {
 
 export function isValidEmail(email) {
     // regex pattern is : ^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$
-    const pattern = /^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$/;
+    // regex pattern by email-validator :
+    // ^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$
+    // allow too much kind of email
+    const pattern = /^[a-z0-9._%+-]+@[a-z0-9-]+[.]{1}[a-z]{2,10}$/;     // single domain name
     email = String(email).toLowerCase();
     return pattern.test(email);
 }
